@@ -1,0 +1,33 @@
+= Local Media Player Notes =
+* Language: Java
+* Steps:
+	1. Create local repository on PC
+			* AJMusicPlayer
+	2. Figure out algorithm for the tasks below before figuring out UI. Determining how the data
+	and processes work together may inform how they connect in JFX.	
+	3.TASKS
+		- From user's specified directory, identify all playable files (wav, mp3, flac).
+			- Eventually multiple directories
+			- Create viewport for users music files
+			- On music item click, create timeline slider with media buttons
+					- Play/Pause button
+					- Repeat button
+					- Previous / Next Song
+					- Volume
+					- Shuffle?
+			- Playlist functionality and viewport
+			- Cool visualizer / layout mode
+					-Normal mode / Cool mode (stylized layout)
+			- Draw sketch layout for buttons
+			- Use JavaFX to create sketch layout
+
+== Tasks ==
+- Get the user's music directory
+	- Scan user's music directory for playable music files. That is files that end in the following extensions: wav, mp3, flac
+		 - For every playable file
+				-	Create a Music object based off the contents of that file / its metadata
+						-	Title
+						- Music Duration
+						- File Path
+				- Add Music object to array of other music objects
+				- FOR NOW: Print all of the Music objects in the array.
