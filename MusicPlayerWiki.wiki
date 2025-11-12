@@ -22,7 +22,7 @@
 			- Use JavaFX to create sketch layout
 
 == Tasks ==
-- Get the user's music directory
+- Get the user's music directory.
 	- Scan user's music directory for playable music files. That is files that end in the following extensions: wav, mp3, flac
 		 - For every playable file
 				-	Create a Music object based off the contents of that file / its metadata
