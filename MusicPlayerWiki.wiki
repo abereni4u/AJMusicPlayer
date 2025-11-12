@@ -35,12 +35,12 @@
 
 
 == Algorithms ==
-- Music File Retrieval
-	-The user needs to specify a directory. Offer input box. Ex: "Please enter a user directory"
-	-Open the folder in Java
-	-For each file in the directory, if file extension ends with .wav, .mp3, or .flac, add the file name to an array.
-	-Print out each file found in the array.
-	-If array is empty, print no music files found. 
+- Basic Music File Retrieval
+	1. The user needs to specify a directory. Offer input box. Ex: "Please enter a user directory"
+	2. Open the folder in Java
+	3. For each file in the directory, if file extension ends with .wav, .mp3, or .flac, add the file name to an array.
+	4. Print out each file found in the array.
+	5. If array is empty, print no music files found. 
 	
 	
 == Entries 11/11/2025 ==
