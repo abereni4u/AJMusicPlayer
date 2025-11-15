@@ -1,4 +1,5 @@
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class MusicPlayer {
         System.out.println("Please enter a directory: ");
         String userDirectory = directoryScanner.nextLine();
 
-        // Convert user's string into a path and test whether or not it's a valid directory.
+        // Convert user's string into a path and test whether it's a valid directory.
 
         boolean isDirectory = isValidDirectory(userDirectory);
         String continueOrNot = "";
@@ -35,12 +36,17 @@ public class MusicPlayer {
     }
 
     /**
-     * isValidDirectory takes a strin
+     * isValidDirectory takes a string
      * @param directory
      * @return
      */
     public static boolean isValidDirectory(String directory){
-        Path userDirectoryPath = Paths.get(directory);
-        return Files.isDirectory(userDirectoryPath);
+        try {
+            Path userDirectoryPath = Paths.get(directory);
+            return Files.isDirectory(userDirectoryPath);
+        }
+        catch (InvalidPathException e){
+            return false;
+        }
     }
 }
