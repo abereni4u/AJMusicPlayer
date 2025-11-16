@@ -46,7 +46,7 @@
 == Entries ==
 === 11/11/2025 ===
 Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
-trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether or not 
+trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether 
 a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
 I could use that Path in the Files method that returns a boolean if the Path is a directory. Noticed I was copy and pasting a lot so I made methods for those. 
 Its only Day 1 of actually coding it out and I already just want to keep going. I didn't consider the case where someone inputs a string with spaces in between the 
@@ -54,7 +54,5 @@ characters, so I'm going to add a check for that later. Of course, when I get to
 click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
 everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
 
-== 11/16/2025 ==
-
-
-
+=== 11/16/2025 ===
+Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
