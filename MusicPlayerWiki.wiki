@@ -43,7 +43,8 @@
 	5. If array is empty, print no music files found. 
 	
 	
-== Entries 11/11/2025 ==
+== Entries ==
+=== 11/11/2025 ===
 Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
 trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether or not 
 a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
@@ -52,3 +53,8 @@ Its only Day 1 of actually coding it out and I already just want to keep going. 
 characters, so I'm going to add a check for that later. Of course, when I get to the UI part, then this feature I'm implementing will be a popup box where they just
 click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
 everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
+
+== 11/16/2025 ==
+
+
+
