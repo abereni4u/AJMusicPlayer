@@ -140,8 +140,168 @@ If array is empty, print no music files found.
 
 </ol>
 </ul>
-	
-	
+<div id="Local Media Player Notes-Design Thoughts"><h2 id="Design Thoughts" class="header"><a href="#Local Media Player Notes-Design Thoughts">Design Thoughts</a></h2></div>
+<div id="Local Media Player Notes-Design Thoughts-Scenarios"><h3 id="Scenarios" class="header"><a href="#Local Media Player Notes-Design Thoughts-Scenarios">Scenarios</a></h3></div>
+<div id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time"><h4 id="Launching Music Player First Time" class="header"><a href="#Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time">Launching Music Player First Time</a></h4></div>
+<ol>
+<li>
+Open the program for the first time and link my local music directory to the program
+
+<ul>
+<li>
+<em>Look at default config folder + load config settings</em>
+
+<li>
+<em>Need to generate a default config file with the user's directory to create the <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong></em>
+
+<li>
+<em>Creating the <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong></em>
+				 -<em>Scan the given directory for music files</em>
+				 -<em>Create <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong> object</em>
+
+<ul>
+<li>
+<em>Write to config folder</em>
+				 -<em>Create a <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> object for each item and add to <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong> object</em>
+
+<li>
+<em>Title</em>
+
+<li>
+<em>Artist</em>
+
+<li>
+<em>Duration</em>
+
+<li>
+<em>Cover Art</em>
+
+<li>
+<em>File Path</em>
+
+</ul>
+</ul>
+<li>
+See entire music library in viewport
+
+<ul>
+<li>
+<em>After <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> items have been added to <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong></em>
+
+<ul>
+<li>
+<em>Read from <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong> and add <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> objects to viewport</em>
+
+</ul>
+</ul>
+<li>
+I click on a song and play it.
+
+<ul>
+<li>
+<em><span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong> object is created. Based on view mode (Playlist or Library) <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> objects are added to <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong></em>
+
+<li>
+<em>Clicked song is added to <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Play Bar"></span><strong id="Play Bar">Play Bar</strong> object and played.</em>
+
+<li>
+<em><span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Play Bar"></span><strong id="Play Bar">Play Bar</strong> methods activated</em>
+
+<ul>
+<li>
+<em>Play</em>
+
+<li>
+<em>Pause</em>
+
+<li>
+<em>Prev</em>
+
+<li>
+<em>Next</em>
+
+<li>
+<em>Shuffle</em> (the <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong>)
+
+<li>
+<em>Repeat</em>
+
+<li>
+<em>View Queue</em>
+
+<ul>
+<li>
+<em>Rearrange <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> in <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong></em>
+
+<li>
+<em>Add <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> to <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong></em>
+
+<li>
+<em>Remove <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> from <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong></em>
+
+<li>
+<em>Clear <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Queue"></span><strong id="Queue">Queue</strong></em>
+
+</ul>
+<li>
+<em>Be able to use keyboard shortcuts for the methods above</em>
+
+</ul>
+</ul>
+<li>
+From the viewport, I create a new playlist from one of the songs in my library.
+
+<ul>
+<li>
+_Show previously made <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> objects
+
+<li>
+Show create <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> option
+
+<ul>
+<li>
+<em>Create new <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> object to hold <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> objects</em>
+
+<li>
+<em>Copy current selected <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> object's path to new <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> object array</em>
+
+<li>
+Update viewport to contain <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> object
+
+</ul>
+<li>
+<em>Write file to config folder</em>
+
+<ul>
+<li>
+<em>Only write again when program closes and if changes have been made</em>
+
+</ul>
+</ul>
+<li>
+Sort my music library
+
+<ul>
+<li>
+<em>The viewport array of <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Music"></span><strong id="Music">Music</strong> objects will be modified here</em>
+
+<li>
+<em>Sort by whatever value here (ratings, title, duration)</em>
+
+<li>
+<em>Same as above but for grouping (by playlist, album, etc)</em>
+
+</ul>
+<li>
+Close the program
+
+<ul>
+<li>
+<em>Update config file / folder based on any changes made (to settings, new playlists, directories added, etc)</em>
+
+</ul>
+</ol>
+		
 <div id="Local Media Player Notes-Entries"><h2 id="Entries" class="header"><a href="#Local Media Player Notes-Entries">Entries</a></h2></div>
 <div id="Local Media Player Notes-Entries-11/11/2025"><h3 id="11/11/2025" class="header"><a href="#Local Media Player Notes-Entries-11/11/2025">11/11/2025</a></h3></div>
 <p>
@@ -158,6 +318,11 @@ everything is solid, I'll start the UI design. It's getting late so I have to st
 <div id="Local Media Player Notes-Entries-11/16/2025"><h3 id="11/16/2025" class="header"><a href="#Local Media Player Notes-Entries-11/16/2025">11/16/2025</a></h3></div>
 <p>
 Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
+</p>
+
+<div id="Local Media Player Notes-Entries-11/19/2025"><h3 id="11/19/2025" class="header"><a href="#Local Media Player Notes-Entries-11/19/2025">11/19/2025</a></h3></div>
+<p>
+Started fleshing out the system design for the program a bit. I wasn't sure how to start, so I made up a scenario of a first time use. What would need to happen? What files need to be created? How will different objects and classes interact with each other? Writing out a scenario and detailing what would be happening in the background has made it a lot more clear what I need to do. I was thinking about the program earlier in the day and I think, along with cool visualizations, I also want to have a mode for slick animations that play whenever we get to the next song. Something that allows me to use my motion graphic skills and also because at least in my head right now it seems like a sick idea. I also have ideas for UI that suit my specific tastes at the very least. Once again these will be further down the line but I have some ways I can make this music player stand out a little bit. There's still some more planning to do but the next thing I want to implement is just storing my directory in a file and reading from it when I launch the program again. That'll be the beginning and where we really start from. When going about writing the background details in the scenario I created, I was thinking this may be an opportunity to use Java serialization? I need a way to store the user's Music Library and load it up everytime. I'll have to look into caching and see how that's done because I think loading the whole library every time we launch would be pretty slow and extra work for no reason. 
 </p>
 
 </body>
