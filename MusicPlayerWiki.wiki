@@ -1,27 +1,57 @@
 = Local Media Player Notes =
-* Language: Java
-* Steps:
-	1. Create local repository on PC
-			* AJMusicPlayer
-	2. Figure out algorithm for the tasks below before figuring out UI. Determining how the data
-	and processes work together may inform how they connect in JFX.	
-	3.TASKS
-		- From user's specified directory, identify all playable files (wav, mp3, flac).
-			- Eventually multiple directories
-			- Create viewport for users music files
-			- On music item click, create timeline slider with media buttons
-					- Play/Pause button
-					- Repeat button
-					- Previous / Next Song
-					- Volume
-					- Shuffle?
-			- Playlist functionality and viewport
-			- Cool visualizer / layout mode
-					-Normal mode / Cool mode (stylized layout)
-			- Draw sketch layout for buttons
-			- Use JavaFX to create sketch layout
+Goal: Create a full fledged music player from mostly scratch using Java. 
+----
+== Entries ==
+----
+----
 
-== Tasks ==
+=== 11/20/2025 ===
+
+Made some decent progress today I think. I thought some more about the system design and started writing very early class descriptions. As I was thinking about everything I'd need to implement today it dawned on me....this is an insane first project. I'm not letting that stop me though I fully intend on getting it completed EVENTUALLY. There are a lot of moving parts here and I haven't even begun to think about audio playback or device management, volume control, etc. I want to try and see if I can write some of those myself without a library. Good opportunity to get familiar with how audio programming even works when we cross that line eventually. I'm definitely going to have to use serialization here. It was brought up for like one class in my CS2 class a year ago and I remember asking the professor the use case for it. I can store objects and all the data they hold in a file, so then I don't have to recreate it each time I launch the program. That's going to be incredibly important for loading the user's MusicLibrary whenever the program launches each time. I reorganized the wiki page and added a system design map to the document. That was also really helpful in organizing my thoughts and how I'm thinking about the program at the moment. I'll be updating it whenever I make adjustments so it'll be possible to see a progression through the git commits. I said this session I'd be working on the config retrieval but I ended up doing more planning, so next time WE ARE coding. I actually really really REALLY want to code now but I want to get some complete draft first. We're almost there though and once that's completed we can really get started and see how completely wrong we were. 
+
+=== 11/19/2025 ===
+
+Started fleshing out the system design for the program a bit. I wasn't sure how to start, so I made up a scenario of a first time use. What would need to happen? What files need to be created? How will different objects and classes interact with each other? Writing out a scenario and detailing what would be happening in the background has made it a lot more clear what I need to do. I was thinking about the program earlier in the day and I think, along with cool visualizations, I also want to have a mode for slick animations that play whenever we get to the next song. Something that allows me to use my motion graphic skills and also because at least in my head right now it seems like a sick idea. I also have ideas for UI that suit my specific tastes at the very least. Once again these will be further down the line but I have some ways I can make this music player stand out a little bit. There's still some more planning to do but the next thing I want to implement is just storing my directory in a file and reading from it when I launch the program again. That'll be the beginning and where we really start from. When going about writing the background details in the scenario I created, I was thinking this may be an opportunity to use Java serialization? I need a way to store the user's Music Library and load it up everytime. I'll have to look into caching and see how that's done because I think loading the whole library every time we launch would be pretty slow and extra work for no reason. 
+
+=== 11/16/2025 ===
+
+Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
+
+=== 11/11/2025 ===
+
+Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
+trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether 
+a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
+I could use that Path in the Files method that returns a boolean if the Path is a directory. Noticed I was copy and pasting a lot so I made methods for those. 
+Its only Day 1 of actually coding it out and I already just want to keep going. I didn't consider the case where someone inputs a string with spaces in between the 
+characters, so I'm going to add a check for that later. Of course, when I get to the UI part, then this feature I'm implementing will be a popup box where they just
+click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
+everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
+
+----
+----
+== Current Tasks ==
+----
+----
+=== PENDING ===
+----
+* Add config file/directory creation and retrieval functionality
+* Implement *Music* class
+* Implement *MusicLibrary* class
+* Draft basic UI for JavaFX
+* Everything else (will break down later).
+* Slick next song animations
+* Device settings management
+* Audio playback
+* Volume control
+* Minimalist mode
+* Slick interface
+* Custom visualizer
+=== IN PROGRESS ===
+----
+* Complete a draft system design plan
+=== COMPLETED ===
+----
 - Get the user's music directory.
 	- Scan user's music directory for playable music files. That is files that end in the following extensions: wav, mp3, flac
 		 - For every playable file
@@ -31,9 +61,8 @@
 						- File Path
 				- Add Music object to array of other music objects
 				- FOR NOW: Print all of the Music objects in the array.
-
-
-
+----
+----
 == Algorithms ==
 - Basic Music File Retrieval
 	1. The user needs to specify a directory. Offer input box. Ex: "Please enter a user directory"
@@ -42,9 +71,19 @@
 	4. Print out each file found in the array.
 	5. If array is empty, print no music files found. 
 
-
+----
+----
 == Design Thoughts == 
+----
+----
+=== Design Map (as of 11.21.2025) ===
+
+  {{file:/DesignMaps/DesignMap_11.21.2025.png}}
+=== Interactions ===
+----
+* *Music* read from directory, added to ->
 === Scenarios ===
+----
 ==== Launching Music Player First Time ====
 	1. Open the program for the first time and link my local music directory to the program
 			- _Look at default config folder + load config settings_
@@ -79,7 +118,7 @@
 					- _Clear *Queue*_
 				- _Be able to use keyboard shortcuts for the methods above_
 	4. From the viewport, I create a new playlist from one of the songs in my library.
-			- _Show previously made *Playlist* objects
+			- _Show previously made *Playlist* objects_
 			- Show create *Playlist* option
 				- _Create new *Playlist* object to hold *Music* objects_
 				- _Copy current selected *Music* object's path to new *Playlist* object array_
@@ -92,21 +131,41 @@
 		 - _Same as above but for grouping (by playlist, album, etc)_
 	7. Close the program
 		 - _Update config file / folder based on any changes made (to settings, new playlists, directories added, etc)_
-		
-== Entries ==
-=== 11/11/2025 ===
-Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
-trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether 
-a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
-I could use that Path in the Files method that returns a boolean if the Path is a directory. Noticed I was copy and pasting a lot so I made methods for those. 
-Its only Day 1 of actually coding it out and I already just want to keep going. I didn't consider the case where someone inputs a string with spaces in between the 
-characters, so I'm going to add a check for that later. Of course, when I get to the UI part, then this feature I'm implementing will be a popup box where they just
-click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
-everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
 
-=== 11/16/2025 ===
-Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
+----
+----
+== Classes ==
+----
+----
+=== MusicLibrary ===
+_Holds all the *Music* and *Playlist* objects within the user's library._
+==== Fields ====
+	- Array<Music> MusicLibraryArray 
+	- Dictionary<Playlist(Title):Array<Playlist>> Playlists 
+	- Map<Albums(Title):Array<Albums>> MusicAlbums
+	
+==== Methods ====
+	- Array<Music> generateCurrentLibrary() 
+		- _returns the MusicLibraryArray_
+	- Array<Playlist> generateCurrentPlaylists()
+		- _returns Playlists_
+	- Array<Albums> generateCurrentAlbums()
+	  - returns MusicAlbums
+----
+=== Music ===
+_Holds all relevant music file information_
+==== Fields ====
+	- Metadata from the file (Artist, Ratings, Title, Duration, Genre, etc)
+	- File path
+	- User given name
 
-=== 11/19/2025 ===
-Started fleshing out the system design for the program a bit. I wasn't sure how to start, so I made up a scenario of a first time use. What would need to happen? What files need to be created? How will different objects and classes interact with each other? Writing out a scenario and detailing what would be happening in the background has made it a lot more clear what I need to do. I was thinking about the program earlier in the day and I think, along with cool visualizations, I also want to have a mode for slick animations that play whenever we get to the next song. Something that allows me to use my motion graphic skills and also because at least in my head right now it seems like a sick idea. I also have ideas for UI that suit my specific tastes at the very least. Once again these will be further down the line but I have some ways I can make this music player stand out a little bit. There's still some more planning to do but the next thing I want to implement is just storing my directory in a file and reading from it when I launch the program again. That'll be the beginning and where we really start from. When going about writing the background details in the scenario I created, I was thinking this may be an opportunity to use Java serialization? I need a way to store the user's Music Library and load it up everytime. I'll have to look into caching and see how that's done because I think loading the whole library every time we launch would be pretty slow and extra work for no reason. 
-
+==== Methods ====
+	- Play Music
+	- Change title
+	- Change rating
+	- Change art
+	- Add to playlist
+	- Getters for various fields
+	
+----
+----

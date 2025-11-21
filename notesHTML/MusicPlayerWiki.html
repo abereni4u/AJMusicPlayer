@@ -10,76 +10,99 @@
 <body>
 
 <div id="Local Media Player Notes"><h1 id="Local Media Player Notes" class="header"><a href="#Local Media Player Notes">Local Media Player Notes</a></h1></div>
+<p>
+Goal: Create a full fledged music player from mostly scratch using Java. 
+<hr />
+</p>
+<div id="Local Media Player Notes-Entries"><h2 id="Entries" class="header"><a href="#Local Media Player Notes-Entries">Entries</a></h2></div>
+<hr />
+<hr />
+
+<div id="Local Media Player Notes-Entries-11/20/2025"><h3 id="11/20/2025" class="header"><a href="#Local Media Player Notes-Entries-11/20/2025">11/20/2025</a></h3></div>
+
+<p>
+Made some decent progress today I think. I thought some more about the system design and started writing very early class descriptions. As I was thinking about everything I'd need to implement today it dawned on me....this is an insane first project. I'm not letting that stop me though I fully intend on getting it completed EVENTUALLY. There are a lot of moving parts here and I haven't even begun to think about audio playback or device management, volume control, etc. I want to try and see if I can write some of those myself without a library. Good opportunity to get familiar with how audio programming even works when we cross that line eventually. I'm definitely going to have to use serialization here. It was brought up for like one class in my CS2 class a year ago and I remember asking the professor the use case for it. I can store objects and all the data they hold in a file, so then I don't have to recreate it each time I launch the program. That's going to be incredibly important for loading the user's MusicLibrary whenever the program launches each time. I reorganized the wiki page and added a system design map to the document. That was also really helpful in organizing my thoughts and how I'm thinking about the program at the moment. I'll be updating it whenever I make adjustments so it'll be possible to see a progression through the git commits. I said this session I'd be working on the config retrieval but I ended up doing more planning, so next time WE ARE coding. I actually really really REALLY want to code now but I want to get some complete draft first. We're almost there though and once that's completed we can really get started and see how completely wrong we were. 
+</p>
+
+<div id="Local Media Player Notes-Entries-11/19/2025"><h3 id="11/19/2025" class="header"><a href="#Local Media Player Notes-Entries-11/19/2025">11/19/2025</a></h3></div>
+
+<p>
+Started fleshing out the system design for the program a bit. I wasn't sure how to start, so I made up a scenario of a first time use. What would need to happen? What files need to be created? How will different objects and classes interact with each other? Writing out a scenario and detailing what would be happening in the background has made it a lot more clear what I need to do. I was thinking about the program earlier in the day and I think, along with cool visualizations, I also want to have a mode for slick animations that play whenever we get to the next song. Something that allows me to use my motion graphic skills and also because at least in my head right now it seems like a sick idea. I also have ideas for UI that suit my specific tastes at the very least. Once again these will be further down the line but I have some ways I can make this music player stand out a little bit. There's still some more planning to do but the next thing I want to implement is just storing my directory in a file and reading from it when I launch the program again. That'll be the beginning and where we really start from. When going about writing the background details in the scenario I created, I was thinking this may be an opportunity to use Java serialization? I need a way to store the user's Music Library and load it up everytime. I'll have to look into caching and see how that's done because I think loading the whole library every time we launch would be pretty slow and extra work for no reason. 
+</p>
+
+<div id="Local Media Player Notes-Entries-11/16/2025"><h3 id="11/16/2025" class="header"><a href="#Local Media Player Notes-Entries-11/16/2025">11/16/2025</a></h3></div>
+
+<p>
+Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
+</p>
+
+<div id="Local Media Player Notes-Entries-11/11/2025"><h3 id="11/11/2025" class="header"><a href="#Local Media Player Notes-Entries-11/11/2025">11/11/2025</a></h3></div>
+
+<p>
+Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
+trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether 
+a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
+I could use that Path in the Files method that returns a boolean if the Path is a directory. Noticed I was copy and pasting a lot so I made methods for those. 
+Its only Day 1 of actually coding it out and I already just want to keep going. I didn't consider the case where someone inputs a string with spaces in between the 
+characters, so I'm going to add a check for that later. Of course, when I get to the UI part, then this feature I'm implementing will be a popup box where they just
+click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
+everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
+</p>
+
+<hr />
+<hr />
+<div id="Local Media Player Notes-Current Tasks"><h2 id="Current Tasks" class="header"><a href="#Local Media Player Notes-Current Tasks">Current Tasks</a></h2></div>
+<hr />
+<hr />
+<div id="Local Media Player Notes-Current Tasks-PENDING"><h3 id="PENDING" class="header"><a href="#Local Media Player Notes-Current Tasks-PENDING">PENDING</a></h3></div>
+<hr />
 <ul>
 <li>
-Language: Java
+Add config file/directory creation and retrieval functionality
 
 <li>
-Steps:
+Implement <span id="Local Media Player Notes-Current Tasks-PENDING-Music"></span><strong id="Music">Music</strong> class
 
-<ol>
 <li>
-Create local repository on PC
+Implement <span id="Local Media Player Notes-Current Tasks-PENDING-MusicLibrary"></span><strong id="MusicLibrary">MusicLibrary</strong> class
 
+<li>
+Draft basic UI for JavaFX
+
+<li>
+Everything else (will break down later).
+
+<li>
+Slick next song animations
+
+<li>
+Device settings management
+
+<li>
+Audio playback
+
+<li>
+Volume control
+
+<li>
+Minimalist mode
+
+<li>
+Slick interface
+
+<li>
+Custom visualizer
+
+</ul>
+<div id="Local Media Player Notes-Current Tasks-IN PROGRESS"><h3 id="IN PROGRESS" class="header"><a href="#Local Media Player Notes-Current Tasks-IN PROGRESS">IN PROGRESS</a></h3></div>
+<hr />
 <ul>
 <li>
-AJMusicPlayer
+Complete a draft system design plan
 
 </ul>
-<li>
-Figure out algorithm for the tasks below before figuring out UI. Determining how the data
-	and processes work together may inform how they connect in JFX.	
-	3.TASKS
-
-<ul>
-<li>
-From user's specified directory, identify all playable files (wav, mp3, flac).
-
-<ul>
-<li>
-Eventually multiple directories
-
-<li>
-Create viewport for users music files
-
-<li>
-On music item click, create timeline slider with media buttons
-
-<ul>
-<li>
-Play/Pause button
-
-<li>
-Repeat button
-
-<li>
-Previous / Next Song
-
-<li>
-Volume
-
-<li>
-Shuffle?
-
-</ul>
-<li>
-Playlist functionality and viewport
-
-<li>
-Cool visualizer / layout mode
-					-Normal mode / Cool mode (stylized layout)
-
-<li>
-Draw sketch layout for buttons
-
-<li>
-Use JavaFX to create sketch layout
-
-</ul>
-</ul>
-</ol>
-</ul>
-<div id="Local Media Player Notes-Tasks"><h2 id="Tasks" class="header"><a href="#Local Media Player Notes-Tasks">Tasks</a></h2></div>
+<div id="Local Media Player Notes-Current Tasks-COMPLETED"><h3 id="COMPLETED" class="header"><a href="#Local Media Player Notes-Current Tasks-COMPLETED">COMPLETED</a></h3></div>
+<hr />
 <ul>
 <li>
 Get the user's music directory.
@@ -117,6 +140,8 @@ FOR NOW: Print all of the Music objects in the array.
 </ul>
 </ul>
 </ul>
+<hr />
+<hr />
 <div id="Local Media Player Notes-Algorithms"><h2 id="Algorithms" class="header"><a href="#Local Media Player Notes-Algorithms">Algorithms</a></h2></div>
 <ul>
 <li>
@@ -140,8 +165,25 @@ If array is empty, print no music files found.
 
 </ol>
 </ul>
+<hr />
+<hr />
 <div id="Local Media Player Notes-Design Thoughts"><h2 id="Design Thoughts" class="header"><a href="#Local Media Player Notes-Design Thoughts">Design Thoughts</a></h2></div>
+<hr />
+<hr />
+<div id="Local Media Player Notes-Design Thoughts-Design Map (as of 11.21.2025)"><h3 id="Design Map (as of 11.21.2025)" class="header"><a href="#Local Media Player Notes-Design Thoughts-Design Map (as of 11.21.2025)">Design Map (as of 11.21.2025)</a></h3></div>
+
+<p>
+  <img src="C:/Users/Work Account/Desktop/WorkRepos/AJMusicPlayer/DesignMaps/DesignMap_11.21.2025.png" />
+</p>
+<div id="Local Media Player Notes-Design Thoughts-Interactions"><h3 id="Interactions" class="header"><a href="#Local Media Player Notes-Design Thoughts-Interactions">Interactions</a></h3></div>
+<hr />
+<ul>
+<li>
+<span id="Local Media Player Notes-Design Thoughts-Interactions-Music"></span><strong id="Music">Music</strong> read from directory, added to -&gt;
+
+</ul>
 <div id="Local Media Player Notes-Design Thoughts-Scenarios"><h3 id="Scenarios" class="header"><a href="#Local Media Player Notes-Design Thoughts-Scenarios">Scenarios</a></h3></div>
+<hr />
 <div id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time"><h4 id="Launching Music Player First Time" class="header"><a href="#Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time">Launching Music Player First Time</a></h4></div>
 <ol>
 <li>
@@ -253,7 +295,7 @@ From the viewport, I create a new playlist from one of the songs in my library.
 
 <ul>
 <li>
-_Show previously made <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> objects
+<em>Show previously made <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> objects</em>
 
 <li>
 Show create <span id="Local Media Player Notes-Design Thoughts-Scenarios-Launching Music Player First Time-Playlist"></span><strong id="Playlist">Playlist</strong> option
@@ -301,29 +343,96 @@ Close the program
 
 </ul>
 </ol>
-		
-<div id="Local Media Player Notes-Entries"><h2 id="Entries" class="header"><a href="#Local Media Player Notes-Entries">Entries</a></h2></div>
-<div id="Local Media Player Notes-Entries-11/11/2025"><h3 id="11/11/2025" class="header"><a href="#Local Media Player Notes-Entries-11/11/2025">11/11/2025</a></h3></div>
+<hr />
+<hr />
+<div id="Local Media Player Notes-Classes"><h2 id="Classes" class="header"><a href="#Local Media Player Notes-Classes">Classes</a></h2></div>
+<hr />
+<hr />
+<div id="Local Media Player Notes-Classes-MusicLibrary"><h3 id="MusicLibrary" class="header"><a href="#Local Media Player Notes-Classes-MusicLibrary">MusicLibrary</a></h3></div>
 <p>
-Alright a little more complicated than we thought. I'm trying to "stretch my capacity" and do things a little differently this time around by
-trying to use AI as little as possible. I'm reading documentation only then testing and adjusting based on what screws up. Today I figured out how to validate whether 
-a given string is a valid directory. I'm immediately getting a better hands-on understanding of how OOP works. I needed to convert the string into a Path, so that 
-I could use that Path in the Files method that returns a boolean if the Path is a directory. Noticed I was copy and pasting a lot so I made methods for those. 
-Its only Day 1 of actually coding it out and I already just want to keep going. I didn't consider the case where someone inputs a string with spaces in between the 
-characters, so I'm going to add a check for that later. Of course, when I get to the UI part, then this feature I'm implementing will be a popup box where they just
-click and choose a directory as in normal programs. I'm just getting the basic functionality down, seeing what data I'll need and how it needs to be processed, and THEN, when
-everything is solid, I'll start the UI design. It's getting late so I have to stop here. 
+<em>Holds all the <span id="Local Media Player Notes-Classes-MusicLibrary-Music"></span><strong id="Music">Music</strong> and <span id="Local Media Player Notes-Classes-MusicLibrary-Playlist"></span><strong id="Playlist">Playlist</strong> objects within the user's library.</em>
 </p>
+<div id="Local Media Player Notes-Classes-MusicLibrary-Fields"><h4 id="Fields" class="header"><a href="#Local Media Player Notes-Classes-MusicLibrary-Fields">Fields</a></h4></div>
+<ul>
+<li>
+Array&lt;Music&gt; MusicLibraryArray 
 
-<div id="Local Media Player Notes-Entries-11/16/2025"><h3 id="11/16/2025" class="header"><a href="#Local Media Player Notes-Entries-11/16/2025">11/16/2025</a></h3></div>
-<p>
-Completed the music file retrieval process today. The Files and Path classes are super helpful. I think most of what I'll need for directory access will be there. Now that this part of the program is done I think the next part is figuring out the actual structure I want to have for this program. Once again I'm not worrying about UI yet, at this point, I'm just working out how the data is gonna be manipulated and stored. I'll just be adding more to the TASKS section of this document and also create a new SYSTEM design section next session. Before I close off tonight gonna try to clean up the code I have written since it's getting a bit messy. Gonna be looking at a few music players I've got on my PC to figure out what kind of absolute basic features I want to have before expanding to the cooler stuff down the line, like visualizations. 
-</p>
+<li>
+Dictionary&lt;Playlist(Title):Array&lt;Playlist&gt;&gt; Playlists 
 
-<div id="Local Media Player Notes-Entries-11/19/2025"><h3 id="11/19/2025" class="header"><a href="#Local Media Player Notes-Entries-11/19/2025">11/19/2025</a></h3></div>
+<li>
+Map&lt;Albums(Title):Array&lt;Albums&gt;&gt; MusicAlbums
+
+</ul>
+	
+<div id="Local Media Player Notes-Classes-MusicLibrary-Methods"><h4 id="Methods" class="header"><a href="#Local Media Player Notes-Classes-MusicLibrary-Methods">Methods</a></h4></div>
+<ul>
+<li>
+Array&lt;Music&gt; generateCurrentLibrary() 
+
+<ul>
+<li>
+<em>returns the MusicLibraryArray</em>
+
+</ul>
+<li>
+Array&lt;Playlist&gt; generateCurrentPlaylists()
+
+<ul>
+<li>
+<em>returns Playlists</em>
+
+</ul>
+<li>
+Array&lt;Albums&gt; generateCurrentAlbums()
+
+<ul>
+<li>
+returns MusicAlbums
+
+</ul>
+</ul>
+<hr />
+<div id="Local Media Player Notes-Classes-Music"><h3 id="Music" class="header"><a href="#Local Media Player Notes-Classes-Music">Music</a></h3></div>
 <p>
-Started fleshing out the system design for the program a bit. I wasn't sure how to start, so I made up a scenario of a first time use. What would need to happen? What files need to be created? How will different objects and classes interact with each other? Writing out a scenario and detailing what would be happening in the background has made it a lot more clear what I need to do. I was thinking about the program earlier in the day and I think, along with cool visualizations, I also want to have a mode for slick animations that play whenever we get to the next song. Something that allows me to use my motion graphic skills and also because at least in my head right now it seems like a sick idea. I also have ideas for UI that suit my specific tastes at the very least. Once again these will be further down the line but I have some ways I can make this music player stand out a little bit. There's still some more planning to do but the next thing I want to implement is just storing my directory in a file and reading from it when I launch the program again. That'll be the beginning and where we really start from. When going about writing the background details in the scenario I created, I was thinking this may be an opportunity to use Java serialization? I need a way to store the user's Music Library and load it up everytime. I'll have to look into caching and see how that's done because I think loading the whole library every time we launch would be pretty slow and extra work for no reason. 
+<em>Holds all relevant music file information</em>
 </p>
+<div id="Local Media Player Notes-Classes-Music-Fields"><h4 id="Fields" class="header"><a href="#Local Media Player Notes-Classes-Music-Fields">Fields</a></h4></div>
+<ul>
+<li>
+Metadata from the file (Artist, Ratings, Title, Duration, Genre, etc)
+
+<li>
+File path
+
+<li>
+User given name
+
+</ul>
+<div id="Local Media Player Notes-Classes-Music-Methods"><h4 id="Methods" class="header"><a href="#Local Media Player Notes-Classes-Music-Methods">Methods</a></h4></div>
+<ul>
+<li>
+Play Music
+
+<li>
+Change title
+
+<li>
+Change rating
+
+<li>
+Change art
+
+<li>
+Add to playlist
+
+<li>
+Getters for various fields
+
+</ul>
+	
+<hr />
+<hr />
 
 </body>
 </html>
