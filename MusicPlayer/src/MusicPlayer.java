@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -6,19 +8,58 @@ import java.util.Scanner;
 
 public class MusicPlayer {
 
+    static final String CONFIG_FOLDER = "C:\\Users\\Work Account\\Desktop\\WorkRepos\\AJMusicPlayer\\testConfigFolder";
+    static final Path CONFIG_FOLDER_PATH = Paths.get(CONFIG_FOLDER);
+
+    static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "\\configFile.txt");
     public static void main(String[] args) throws IOException {
 
-        // Test if user's string is a valid directory and returns a Path object if it is.
-        Path userDirectoryPath = getUserPath();
-
-        // Iterate through the files in the directory and add all music files present to an array.
-        if (userDirectoryPath!= null) {
-           ArrayList<Path> userMusic = getMusicFiles(userDirectoryPath);
-           for(Path uPath : userMusic ){
-               System.out.println(uPath.getFileName());
+        // Check if config folder/file exists
+        // If it does: load songs from directories in file
+        if(Files.exists(CONFIG_FOLDER_PATH)) {
+            Path newDirectory = getUserPath();
+            assert newDirectory != null;
+            String newDirectoryString = newDirectory.toString();
+            try (BufferedWriter writer = Files.newBufferedWriter(CONFIG_FILE_PATH, StandardOpenOption.APPEND)) {
+                writer.write(newDirectoryString + "\n");
             }
         }
-        System.out.println("Program completed");
+        // Test if user's string is a valid directory and returns a Path object if it is.
+        else{
+
+            Path userDirectoryPath = getUserPath();
+
+            // Create config folder/file at specific location on user's PC and add user's given directory to config file
+            // Iterate through the files in the given directory and add all music files present to an array
+            if (userDirectoryPath!= null) {
+                // Create confing folder
+                Files.createDirectory(CONFIG_FOLDER_PATH);
+                Path configFile = Paths.get(CONFIG_FOLDER, "\\configFile.txt");
+
+                try{ // Create configFile.txt and append given user directory to it.
+                    Files.createFile(configFile);
+                    try (BufferedWriter writer = Files.newBufferedWriter(configFile)) {
+                        writer.write(userDirectoryPath.toString());
+                    }
+                }
+                catch (FileAlreadyExistsException x){
+                    System.err.format("file named %s" +
+                            " already exists%n", configFile);
+                }
+                catch (IOException x){
+                    // Some other sort of failure, such as permissions.
+                    System.err.format("createFile error: %s%n", x);
+                }
+
+
+                ArrayList<Path> userMusic = getMusicFiles(userDirectoryPath);
+                for(Path uPath : userMusic ){
+                    System.out.println(uPath.getFileName());
+                }
+            }
+            System.out.println("Program completed");
+        }
+
     }
 
     /**
