@@ -5,6 +5,10 @@ Goal: Create a full fledged music player from mostly scratch using Java.
 ----
 ----
 
+=== 11/26/2025 ===
+
+Changing the frequency of these entries to once a week or every couple sessions instead of EVERY session. The ideas I have about how to approach this project change on the daily and I feel like spending time documenting each change wouldn't be a good use of time. So I'm only gonna add one of these when I make a lot of changes or finish some feature. Today I tried implementing really basic config file functionality. That turned into reading about how Java I/O streams work and what buffered streams are. I can now add directories to a file, next up is reading from that config file and then going through each directory in the text file for music objects. Once again the code is getting messy so I'm going to refactor some of it when I logon next time. I changed the design plan for the music player a bit; instead of I'm just treating playlists as a different mechanism by which to sort music objects in the display area. In the same way the user will be able to sort by rating, artist, name, times played, etc, the playlist is just another means to sort the library. Before I was thinking of it as something separate but its just an order of paths at the end of the day. Also changing my approach to this project a bit. I think I have a decent layout for how things could go so I'm gonna spend a little less time planning everything out and just code to see what happens. Next time I write one of these will be when I've gotten to creating the Music class and/or MusicLibrary class. 
+
 === 11/20/2025 ===
 
 Made some decent progress today I think. I thought some more about the system design and started writing very early class descriptions. As I was thinking about everything I'd need to implement today it dawned on me....this is an insane first project. I'm not letting that stop me though I fully intend on getting it completed EVENTUALLY. There are a lot of moving parts here and I haven't even begun to think about audio playback or device management, volume control, etc. I want to try and see if I can write some of those myself without a library. Good opportunity to get familiar with how audio programming even works when we cross that line eventually. I'm definitely going to have to use serialization here. It was brought up for like one class in my CS2 class a year ago and I remember asking the professor the use case for it. I can store objects and all the data they hold in a file, so then I don't have to recreate it each time I launch the program. That's going to be incredibly important for loading the user's MusicLibrary whenever the program launches each time. I reorganized the wiki page and added a system design map to the document. That was also really helpful in organizing my thoughts and how I'm thinking about the program at the moment. I'll be updating it whenever I make adjustments so it'll be possible to see a progression through the git commits. I said this session I'd be working on the config retrieval but I ended up doing more planning, so next time WE ARE coding. I actually really really REALLY want to code now but I want to get some complete draft first. We're almost there though and once that's completed we can really get started and see how completely wrong we were. 
@@ -76,9 +80,9 @@ everything is solid, I'll start the UI design. It's getting late so I have to st
 == Design Thoughts == 
 ----
 ----
-=== Design Map (as of 11.21.2025) ===
+=== Design Map (as of 11.26.2025) ===
 
-  {{file:/DesignMaps/DesignMap_11.21.2025.png}}
+  {{file:/DesignMaps/DM_11.26.25.png}}
 === Interactions ===
 ----
 * *Music* read from directory, added to ->
