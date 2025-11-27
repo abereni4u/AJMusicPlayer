@@ -16,47 +16,15 @@ public class MusicPlayer {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("Welcome!");
+        System.out.println("==============================================");
 
         // Check if config folder/file exists
-        // Deserialize MusicLibrary and load MusicItems
-        // Scan directories from config File
         // If new songs in directory add to MusicLibrary
         if(Files.exists(CONFIG_FOLDER_PATH)) {
             // Deserialize MusicLibrary
             deserializeLibrary();
-            // Create an array to hold new songs found in Directories
-            ArrayList<MusicItem> newSongs = new ArrayList<>();
-
-            try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE_PATH)) {
-                Stream<String> lines = reader.lines();
-
-                lines.filter(x -> !(x.startsWith("#")))
-                        .forEach(x -> {
-                    if(isValidDirectory(x)) {
-                        Path configDirectoryEntry = Paths.get(x);
-                        try {
-                            ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
-                            for(Path musicPath: files){
-                                MusicItem newMusicItem = new MusicItem(musicPath.toString());
-                                boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
-                                if(!(insideLibrary)){
-                                   newSongs.add(newMusicItem);
-                                   USER_LIBRARY.addMusic(newMusicItem);
-                                }
-                            }
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    else {
-                        throw new InvalidPathException(x, "This path is invalid.");
-                    }
-                });
-
-                System.out.println(newSongs.size() + " songs added:");
-                newSongs.forEach(x -> System.out.println(x.getTitle()));
-                serializeLibrary();
-            }
+            // Update MusicLibrary
+            updateLibrary();
         }
 
         // Get user path
@@ -82,10 +50,66 @@ public class MusicPlayer {
                 serializeLibrary();
             }
         }
+
         System.out.println("Current songs in library : " + USER_LIBRARY.getCurrentLibrary().size());
+        System.out.println("==============================================");
+        // USER_LIBRARY.getCurrentLibrary().forEach(x -> System.out.println(x.getTitle() + "\n"));
+
+        System.out.println("Current directories in library : " + USER_LIBRARY.getCurrentDirectories().size());
+        System.out.println("==============================================");
+        USER_LIBRARY.getCurrentDirectories().forEach(System.out::println);
+        System.out.println("==============================================");
         System.out.println("Program completed");
     }
 
+    /**
+     * Updates MusicLibrary with new additions.
+     * @throws IOException
+     */
+    public static void updateLibrary() throws IOException {
+
+        ArrayList<MusicItem> newSongs = new ArrayList<>();
+
+        try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE_PATH)) {
+            Stream<String> lines = reader.lines();
+
+            lines.filter(x -> !(x.startsWith("#")))
+                .forEach(x ->
+                { if(isValidDirectory(x)) {
+                    if(!(USER_LIBRARY.getCurrentDirectories().contains(x)))
+                        USER_LIBRARY.addDirectory(x);
+                    Path configDirectoryEntry = Paths.get(x);
+                    try {
+                        ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
+                        for(Path musicPath: files){
+                            MusicItem newMusicItem = new MusicItem(musicPath.toString());
+                            boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
+                            if(!(insideLibrary)){
+                                newSongs.add(newMusicItem);
+                                USER_LIBRARY.addMusic(newMusicItem);
+                            }
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    throw new InvalidPathException(x, "This path is invalid.");
+                }
+                });
+            System.out.println(newSongs.size() + " songs added:");
+            System.out.println("==============================================");
+            newSongs.forEach(x -> System.out.println(x.getTitle()));
+            System.out.println("==============================================");
+            serializeLibrary();
+        }
+    }
+
+
+    /**
+     * Serializes MusicLibrary object to config folder
+     * @throws IOException
+     */
     public static void serializeLibrary() throws IOException {
         FileOutputStream outStream = new FileOutputStream(USER_LIBRARY_PATH);
         ObjectOutputStream objectOutputFile = new ObjectOutputStream(outStream);
@@ -95,6 +119,11 @@ public class MusicPlayer {
         objectOutputFile.close();
     }
 
+    /**
+     * Deserializes MusicLibrary object from config folder
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void deserializeLibrary() throws IOException, ClassNotFoundException {
         FileInputStream inStream = new FileInputStream(USER_LIBRARY_PATH);
         ObjectInputStream inputFile = new ObjectInputStream(inStream) ;
@@ -111,8 +140,7 @@ public class MusicPlayer {
                 System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
             }
 
-
-
+        // Close streams
         inStream.close();
         inputFile.close();
     }

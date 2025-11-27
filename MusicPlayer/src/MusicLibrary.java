@@ -63,6 +63,10 @@ public class MusicLibrary implements Serializable{
       return this.currentLibrary;
    }
 
+   public ArrayList<String> getCurrentDirectories(){
+      return this.Directories;
+   }
+
    public boolean containsSong(MusicItem Music){
       return currentLibrary.contains(Music);
    }
