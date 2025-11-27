@@ -12,7 +12,7 @@ public class MusicPlayer {
     static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "/configFile.txt");
 
     static MusicLibrary USER_LIBRARY = null;
-    static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLbrary.dat" ;
+    static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLibrary.dat" ;
     static ArrayList<Path> userDirectories;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -31,7 +31,8 @@ public class MusicPlayer {
             try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE_PATH)) {
                 Stream<String> lines = reader.lines();
 
-                lines.skip(2).forEach(x -> {
+                lines.filter(x -> !(x.startsWith("#")))
+                        .forEach(x -> {
                     if(isValidDirectory(x)) {
                         Path configDirectoryEntry = Paths.get(x);
                         try {
@@ -88,6 +89,9 @@ public class MusicPlayer {
         FileOutputStream outStream = new FileOutputStream(USER_LIBRARY_PATH);
         ObjectOutputStream objectOutputFile = new ObjectOutputStream(outStream);
         objectOutputFile.writeObject(USER_LIBRARY);
+
+        outStream.close();
+        objectOutputFile.close();
     }
 
     public static void deserializeLibrary() throws IOException, ClassNotFoundException {
@@ -95,6 +99,9 @@ public class MusicPlayer {
         ObjectInputStream inputFile = new ObjectInputStream(inStream) ;
         USER_LIBRARY = (MusicLibrary) inputFile.readObject();
         USER_LIBRARY.deserializeMusicObjects();
+
+        inStream.close();
+        inputFile.close();
     }
 
     /***
