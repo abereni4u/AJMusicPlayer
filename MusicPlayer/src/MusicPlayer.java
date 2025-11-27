@@ -12,7 +12,7 @@ public class MusicPlayer {
     static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "/configFile.txt");
     static MusicLibrary USER_LIBRARY = null;
     static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLibrary.dat" ;
-    static ArrayList<Path> userDirectories;
+    static ArrayList<String> userDirectories = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("Welcome!");
@@ -50,7 +50,10 @@ public class MusicPlayer {
                 serializeLibrary();
             }
         }
+        endReport();
+    }
 
+    public static void endReport(){
         System.out.println("Current songs in library : " + USER_LIBRARY.getCurrentLibrary().size());
         System.out.println("==============================================");
         // USER_LIBRARY.getCurrentLibrary().forEach(x -> System.out.println(x.getTitle() + "\n"));
@@ -63,47 +66,37 @@ public class MusicPlayer {
     }
 
     /**
-     * Updates MusicLibrary with new additions.
+     * Updates MusicLibrary with new additions from directories. If new directories are found, they get added to
+     * the MusicLibrary.
      * @throws IOException
      */
     public static void updateLibrary() throws IOException {
 
         ArrayList<MusicItem> newSongs = new ArrayList<>();
 
-        try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE_PATH)) {
-            Stream<String> lines = reader.lines();
-
-            lines.filter(x -> !(x.startsWith("#")))
-                .forEach(x ->
-                { if(isValidDirectory(x)) {
-                    if(!(USER_LIBRARY.getCurrentDirectories().contains(x)))
-                        USER_LIBRARY.addDirectory(x);
-                    Path configDirectoryEntry = Paths.get(x);
-                    try {
-                        ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
-                        for(Path musicPath: files){
-                            MusicItem newMusicItem = new MusicItem(musicPath.toString());
-                            boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
-                            if(!(insideLibrary)){
-                                newSongs.add(newMusicItem);
-                                USER_LIBRARY.addMusic(newMusicItem);
-                            }
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+        parseConfigFile();
+        for(String directory: userDirectories){
+            if(!(USER_LIBRARY.getCurrentDirectories().contains(directory)))
+                USER_LIBRARY.addDirectory(directory);
+            Path configDirectoryEntry = Paths.get(directory);
+            ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
+            for(Path musicPath: files){
+                MusicItem newMusicItem = new MusicItem(musicPath.toString());
+                boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
+                if(!(insideLibrary)){
+                    newSongs.add(newMusicItem);
+                    USER_LIBRARY.addMusic(newMusicItem);
                 }
-                else {
-                    throw new InvalidPathException(x, "This path is invalid.");
-                }
-                });
+            }
+        }
             System.out.println(newSongs.size() + " songs added:");
             System.out.println("==============================================");
             newSongs.forEach(x -> System.out.println(x.getTitle()));
             System.out.println("==============================================");
             serializeLibrary();
         }
-    }
+
+
 
 
     /**
@@ -119,8 +112,24 @@ public class MusicPlayer {
         objectOutputFile.close();
     }
 
+    public static void parseConfigFile() throws IOException {
+        try (BufferedReader reader = Files.newBufferedReader(CONFIG_FILE_PATH)) {
+            Stream<String> lines = reader.lines();
+            lines.filter(x -> !(x.startsWith("#")))
+                    .forEach(x ->
+                    {
+                        if (isValidDirectory(x)) {
+                            userDirectories.add(x);
+                        }
+                        else {
+                            throw new InvalidPathException(x, "This path is invalid.");
+                        }
+                    });
+        }
+    }
+
     /**
-     * Deserializes MusicLibrary object from config folder
+     * Deserializes MusicLibrary object from config folder. Prints all songs that have changed locations in directory.
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -130,6 +139,9 @@ public class MusicPlayer {
         USER_LIBRARY = (MusicLibrary) inputFile.readObject();
         // Set path fields in each MusicItem again and remove songs from library that are not in a path
         // contained in the config file.
+
+        parseConfigFile();
+        USER_LIBRARY.getCurrentDirectories().removeIf(x  -> !(userDirectories.contains(x)));
         USER_LIBRARY.deserializeMusicObjects();
 
         // Print any unlinked items.
