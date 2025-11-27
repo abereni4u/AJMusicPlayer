@@ -1,5 +1,7 @@
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -10,14 +12,32 @@ public class MusicLibrary implements Serializable{
    private ArrayList<MusicItem> currentLibrary;
    private ArrayList<MusicItem> unlinkedItems;
 
+   private ArrayList<String> Directories;
+
    public MusicLibrary(){
       this.currentLibrary = new ArrayList<>();
       this.unlinkedItems = new ArrayList<>();
+      this.Directories = new ArrayList<>();
    }
 
    public void deserializeMusicObjects(){
+      ArrayList<MusicItem> itemsToRemove = new ArrayList<>();
+
       for(MusicItem MI: currentLibrary){
-         if(Files.exists(Paths.get(MI.getPathString()))){
+         Path MIPath = Paths.get(MI.getPathString());
+
+         boolean inDirectories = false;
+         for(String directory : Directories){
+            if (MIPath.startsWith(directory)) {
+               inDirectories = true;
+               break;
+            }
+         }
+
+         if(!inDirectories){
+            itemsToRemove.add(MI);
+         }
+         else if(Files.exists(MIPath)){
             MI.setFilePath();
             unlinkedItems.remove(MI);
          }
@@ -25,6 +45,14 @@ public class MusicLibrary implements Serializable{
             unlinkedItems.add(MI);
          }
       }
+      if(itemsToRemove.size() >0)
+         System.out.println(itemsToRemove.size() + " songs have been removed from the library.");
+
+      currentLibrary.removeAll(itemsToRemove);
+   }
+
+   public void addDirectory(String userDirectory){
+      this.Directories.add(userDirectory);
    }
 
    public void addMusic(MusicItem Music){
@@ -42,4 +70,5 @@ public class MusicLibrary implements Serializable{
    public ArrayList<MusicItem> getUnlinkedItems(){
       return this.unlinkedItems;
    }
+
 }

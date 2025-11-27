@@ -68,6 +68,7 @@ public class MusicPlayer {
             if(userDirectoryPath!= null) {
                 // Create config folder and file
                 createInitialConfigSetup(userDirectoryPath);
+                USER_LIBRARY.addDirectory(userDirectoryPath.toString());
                 // Get initial list of audio files from user directory
                 ArrayList<Path> userMusic = getMusicFiles(userDirectoryPath);
                 // Create a MusicItem from each audio file in directory and add MusicItem to MusicLibrary
@@ -81,6 +82,7 @@ public class MusicPlayer {
                 serializeLibrary();
             }
         }
+        System.out.println("Current songs in library : " + USER_LIBRARY.getCurrentLibrary().size());
         System.out.println("Program completed");
     }
 
@@ -97,13 +99,20 @@ public class MusicPlayer {
         FileInputStream inStream = new FileInputStream(USER_LIBRARY_PATH);
         ObjectInputStream inputFile = new ObjectInputStream(inStream) ;
         USER_LIBRARY = (MusicLibrary) inputFile.readObject();
+        // Set path fields in each MusicItem again and remove songs from library that are not in a path
+        // contained in the config file.
         USER_LIBRARY.deserializeMusicObjects();
+
+        // Print any unlinked items.
         ArrayList<MusicItem> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
         if(unlinkedItems.size() > 0)
             System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
             for(MusicItem MI: unlinkedItems){
                 System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
             }
+
+
+
         inStream.close();
         inputFile.close();
     }

@@ -41,6 +41,9 @@ public class MusicItem implements Serializable {
         if(!(obj instanceof MusicItem other)){
             return false;
         }
+        if(this.filePath == null){
+            return this.pathString.equals(other.pathString);
+        }
 
         return this.filePath.equals(other.filePath);
     }
