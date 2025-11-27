@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /***
@@ -11,12 +12,15 @@ public class MusicLibrary implements Serializable{
 
    public MusicLibrary(){
       this.currentLibrary = new ArrayList<>();
+      this.unlinkedItems = new ArrayList<>();
    }
 
    public void deserializeMusicObjects(){
       for(MusicItem MI: currentLibrary){
-         if(Files.exists(MI.getFilePath()))
+         if(Files.exists(Paths.get(MI.getPathString()))){
             MI.setFilePath();
+            unlinkedItems.remove(MI);
+         }
          else {
             unlinkedItems.add(MI);
          }

@@ -10,7 +10,6 @@ public class MusicPlayer {
     static final String CONFIG_FOLDER = "../testConfigFolder";
     static final Path CONFIG_FOLDER_PATH = Paths.get(CONFIG_FOLDER);
     static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "/configFile.txt");
-
     static MusicLibrary USER_LIBRARY = null;
     static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLibrary.dat" ;
     static ArrayList<Path> userDirectories;
@@ -103,7 +102,7 @@ public class MusicPlayer {
         if(unlinkedItems.size() > 0)
             System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
             for(MusicItem MI: unlinkedItems){
-                System.out.println(MI.getTitle() + "|" + MI.getPathString() + "\n");
+                System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
             }
         inStream.close();
         inputFile.close();
@@ -124,8 +123,8 @@ public class MusicPlayer {
         try { // Create configFile.txt and append given user directory to it.
             Files.createFile(configFile);
             try (BufferedWriter writer = Files.newBufferedWriter(configFile)) {
-                writer.write("Directories:\n" +
-                                 "=========\n");
+                writer.write("# Directories:\n" +
+                                 "# =========\n");
                 writer.write(userDirectoryPath.toString());
             }
         } catch (FileAlreadyExistsException x) {
