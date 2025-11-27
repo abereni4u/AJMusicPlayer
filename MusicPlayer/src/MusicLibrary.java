@@ -22,6 +22,7 @@ public class MusicLibrary implements Serializable{
 
    public void deserializeMusicObjects(){
       ArrayList<MusicItem> itemsToRemove = new ArrayList<>();
+      unlinkedItems.clear();
 
       for(MusicItem MI: currentLibrary){
          Path MIPath = Paths.get(MI.getPathString());
@@ -39,7 +40,6 @@ public class MusicLibrary implements Serializable{
          }
          else if(Files.exists(MIPath)){
             MI.setFilePath();
-            unlinkedItems.remove(MI);
          }
          else {
             unlinkedItems.add(MI);

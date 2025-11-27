@@ -146,11 +146,12 @@ public class MusicPlayer {
 
         // Print any unlinked items.
         ArrayList<MusicItem> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
-        if(unlinkedItems.size() > 0)
+        if(unlinkedItems.size() > 0) {
             System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
-            for(MusicItem MI: unlinkedItems){
+            for (MusicItem MI : unlinkedItems) {
                 System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
             }
+        }
 
         // Close streams
         inStream.close();
