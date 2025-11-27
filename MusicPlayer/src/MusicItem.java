@@ -26,6 +26,8 @@ public class MusicItem implements Serializable {
         return this.title;
     }
 
+    public String getPathString(){ return this.pathString;}
+
     public void setFilePath(){
         this.filePath = Paths.get(pathString);
     }

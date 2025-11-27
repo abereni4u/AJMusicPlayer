@@ -34,4 +34,8 @@ public class MusicLibrary implements Serializable{
    public boolean containsSong(MusicItem Music){
       return currentLibrary.contains(Music);
    }
+
+   public ArrayList<MusicItem> getUnlinkedItems(){
+      return this.unlinkedItems;
+   }
 }

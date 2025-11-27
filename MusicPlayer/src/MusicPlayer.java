@@ -99,7 +99,12 @@ public class MusicPlayer {
         ObjectInputStream inputFile = new ObjectInputStream(inStream) ;
         USER_LIBRARY = (MusicLibrary) inputFile.readObject();
         USER_LIBRARY.deserializeMusicObjects();
-
+        ArrayList<MusicItem> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
+        if(unlinkedItems.size() > 0)
+            System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
+            for(MusicItem MI: unlinkedItems){
+                System.out.println(MI.getTitle() + "|" + MI.getPathString() + "\n");
+            }
         inStream.close();
         inputFile.close();
     }
