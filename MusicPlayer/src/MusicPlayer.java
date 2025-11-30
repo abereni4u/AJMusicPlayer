@@ -9,9 +9,9 @@ public class MusicPlayer {
 
     static final String CONFIG_FOLDER = "../testConfigFolder";
     static final Path CONFIG_FOLDER_PATH = Paths.get(CONFIG_FOLDER);
-    static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "/configFile.txt");
+    static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "configFile.txt");
     static MusicLibrary USER_LIBRARY = null;
-    static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLibrary.dat" ;
+    static final String USER_LIBRARY_PATH = "../testConfigFolder/MusicLibrary.dat";
     static ArrayList<String> userDirectories = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -168,7 +168,7 @@ public class MusicPlayer {
     public static void createInitialConfigSetup(Path userDirectoryPath) throws IOException {
 
         Files.createDirectory(CONFIG_FOLDER_PATH);
-        Path configFile = Paths.get(CONFIG_FOLDER, "\\configFile.txt");
+        Path configFile = Paths.get(CONFIG_FOLDER, "configFile.txt");
 
         try { // Create configFile.txt and append given user directory to it.
             Files.createFile(configFile);

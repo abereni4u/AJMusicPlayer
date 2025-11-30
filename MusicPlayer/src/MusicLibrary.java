@@ -12,12 +12,12 @@ public class MusicLibrary implements Serializable{
    private ArrayList<MusicItem> currentLibrary;
    private ArrayList<MusicItem> unlinkedItems;
 
-   private ArrayList<String> Directories;
+   private ArrayList<String> LibraryDirectories;
 
    public MusicLibrary(){
       this.currentLibrary = new ArrayList<>();
       this.unlinkedItems = new ArrayList<>();
-      this.Directories = new ArrayList<>();
+      this.LibraryDirectories= new ArrayList<>();
    }
 
    public void deserializeMusicObjects(){
@@ -28,7 +28,7 @@ public class MusicLibrary implements Serializable{
          Path MIPath = Paths.get(MI.getPathString());
 
          boolean inDirectories = false;
-         for(String directory : Directories){
+         for(String directory : LibraryDirectories){
             if (MIPath.startsWith(directory)) {
                inDirectories = true;
                break;
@@ -52,7 +52,7 @@ public class MusicLibrary implements Serializable{
    }
 
    public void addDirectory(String userDirectory){
-      this.Directories.add(userDirectory);
+      this.LibraryDirectories.add(userDirectory);
    }
 
    public void addMusic(MusicItem Music){
@@ -64,7 +64,7 @@ public class MusicLibrary implements Serializable{
    }
 
    public ArrayList<String> getCurrentDirectories(){
-      return this.Directories;
+      return this.LibraryDirectories;
    }
 
    public boolean containsSong(MusicItem Music){
