@@ -1,3 +1,5 @@
+package main;
+
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -32,6 +34,8 @@ public class ConfigManager {
      * @return a boolean representing if the given string is a directory or not.
      */
     public static boolean isValidDirectory(String directory){
+        if(directory.equals(""))
+            return false;
         try {
             Path userDirectoryPath = Paths.get(directory);
             return Files.isDirectory(userDirectoryPath);

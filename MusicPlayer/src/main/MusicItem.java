@@ -1,3 +1,5 @@
+package main;
+
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;

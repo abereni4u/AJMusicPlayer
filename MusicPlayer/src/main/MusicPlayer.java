@@ -1,3 +1,5 @@
+package main;
+
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.Files;
