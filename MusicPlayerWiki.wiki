@@ -5,6 +5,11 @@ Goal: Create a full fledged music player from mostly scratch using Java.
 ----
 ----
 
+=== 11/30/2025 ===
+Thought more about what I want to leave with after completing this project and thought learning how to use JUnit and trying out TDD would be a good idea. I'm refactoring the project again, and once again, with a better idea of what needs to happen. Right now I'm going through and adding tests for all the methods I've got so far while also removing any I think I don't need or could be placed somewhere else. I've gotten a better handle on how the stream API works and got that working to check if any songs in a user's library have been unlinked, deleted, etc. Changed the structure of this wiki too. Will probably just use it mainly for entries, goals, and my design map. Everything else I've just been writing out on paper and keeping notes with me but it changes so often I don't want to keep updating it here. 
+
+I haven't really built out anything so far but I'm seriously starting to get an appreciation for the development of any large software systems in general. Coming from a motion design background, I had gotten to a point where I could look at projects and have some idea of how animations were done, or how I could replicate it. Programming, up until about 15 commits ago has felt kind of black boxish in comparison, even though I've taken multiple CS related classes. I've recently started watching streams of devs building out desktop applications, apps and websites over hours, planning and all, and I'm just now even beginning to develop any sort of "eye" or "taste" for software design. Not that I have any preferences yet, but I have a way clearer view of how much I don't know and need to learn. 
+
 === 11/26/2025 ===
 
 Changing the frequency of these entries to once a week or every couple sessions instead of EVERY session. The ideas I have about how to approach this project change on the daily and I feel like spending time documenting each change wouldn't be a good use of time. So I'm only gonna add one of these when I make a lot of changes or finish some feature. Today I tried implementing really basic config file functionality. That turned into reading about how Java I/O streams work and what buffered streams are. I can now add directories to a file, next up is reading from that config file and then going through each directory in the text file for music objects. Once again the code is getting messy so I'm going to refactor some of it when I logon next time. I changed the design plan for the music player a bit; instead of I'm just treating playlists as a different mechanism by which to sort music objects in the display area. In the same way the user will be able to sort by rating, artist, name, times played, etc, the playlist is just another means to sort the library. Before I was thinking of it as something separate but its just an order of paths at the end of the day. Also changing my approach to this project a bit. I think I have a decent layout for how things could go so I'm gonna spend a little less time planning everything out and just code to see what happens. Next time I write one of these will be when I've gotten to creating the Music class and/or MusicLibrary class. 
@@ -53,39 +58,20 @@ everything is solid, I'll start the UI design. It's getting late so I have to st
 * Custom visualizer
 === IN PROGRESS ===
 ----
-* Complete a draft system design plan
+* Add config file/directory creation and retrieval functionality
 === COMPLETED ===
 ----
 - Get the user's music directory.
-	- Scan user's music directory for playable music files. That is files that end in the following extensions: wav, mp3, flac
-		 - For every playable file
-				-	Create a Music object based off the contents of that file / its metadata
-						-	Title
-						- Music Duration
-						- File Path
-				- Add Music object to array of other music objects
-				- FOR NOW: Print all of the Music objects in the array.
 ----
 ----
-== Algorithms ==
-- Basic Music File Retrieval
-	1. The user needs to specify a directory. Offer input box. Ex: "Please enter a user directory"
-	2. Open the folder in Java
-	3. For each file in the directory, if file extension ends with .wav, .mp3, or .flac, add the file name to an array.
-	4. Print out each file found in the array.
-	5. If array is empty, print no music files found. 
 
-----
-----
 == Design Thoughts == 
 ----
 ----
 === Design Map (as of 11.26.2025) ===
 
   {{file:/DesignMaps/DM_11.26.25.png}}
-=== Interactions ===
-----
-* *Music* read from directory, added to ->
+	
 === Scenarios ===
 ----
 ==== Launching Music Player First Time ====
@@ -136,40 +122,5 @@ everything is solid, I'll start the UI design. It's getting late so I have to st
 	7. Close the program
 		 - _Update config file / folder based on any changes made (to settings, new playlists, directories added, etc)_
 
-----
-----
-== Classes ==
-----
-----
-=== MusicLibrary ===
-_Holds all the *Music* and *Playlist* objects within the user's library._
-==== Fields ====
-	- Array<Music> MusicLibraryArray 
-	- Dictionary<Playlist(Title):Array<Playlist>> Playlists 
-	- Map<Albums(Title):Array<Albums>> MusicAlbums
-	
-==== Methods ====
-	- Array<Music> generateCurrentLibrary() 
-		- _returns the MusicLibraryArray_
-	- Array<Playlist> generateCurrentPlaylists()
-		- _returns Playlists_
-	- Array<Albums> generateCurrentAlbums()
-	  - returns MusicAlbums
-----
-=== Music ===
-_Holds all relevant music file information_
-==== Fields ====
-	- Metadata from the file (Artist, Ratings, Title, Duration, Genre, etc)
-	- File path
-	- User given name
-
-==== Methods ====
-	- Play Music
-	- Change title
-	- Change rating
-	- Change art
-	- Add to playlist
-	- Getters for various fields
-	
 ----
 ----
