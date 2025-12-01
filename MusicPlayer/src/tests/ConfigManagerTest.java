@@ -79,12 +79,8 @@ class ConfigManagerTest {
             Files.createTempFile(aTempDir, tempMusicPathString, fileTypes[rand.nextInt(fileTypes.length)]);
         }
 
-        Files.newDirectoryStream(aTempDir).forEach(x -> System.out.println(x.getFileName()));
-
         ArrayList<Path> musicFileArray = ConfigManager.getMusicFiles(aTempDir);
-        for(Path tempMusicPath : musicFileArray){
-            assertEquals(0, musicFileArray.size());
-        }
+        assertEquals(0, musicFileArray.size());
 
     }
 
