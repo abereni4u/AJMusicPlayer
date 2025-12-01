@@ -47,8 +47,9 @@ public class ConfigManager {
                     // Scan directory for music files
     /**
      * getMusicFiles returns an array of paths representing music files in a directory.
+     * If no music files are detected, the array will be of length 0.
      * @param userDirectoryPath Valid directory path containing music files.
-     * @return an ArrayList of music file paths.
+     * @return an ArrayList of music file paths OR empty if no music files are detected.
      */
     public static ArrayList<Path> getMusicFiles(Path userDirectoryPath) throws IOException {
 

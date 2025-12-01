@@ -7,10 +7,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +21,9 @@ class ConfigManagerTest {
     @TempDir
     Path aTempDir;
 
+    // --------------------------------------------
+    //           isValidDirectory Tests          //
+    // --------------------------------------------
     @Test
     @DisplayName("Validate if string is directory")
     void isValidDirectory() {
@@ -33,6 +38,10 @@ class ConfigManagerTest {
                 () -> assertTrue(ConfigManager.isValidDirectory("../testMusicFolder"))
         );
     }
+
+    // --------------------------------------------
+    //           getMusicFiles Tests             //
+    // --------------------------------------------
 
     @Test
     @DisplayName("Tests getMusicFiles on a directory full of ONLY music files")
@@ -55,6 +64,28 @@ class ConfigManagerTest {
 
         ArrayList<Path> musicFileArray = ConfigManager.getMusicFiles(aTempDir);
         assertEquals(0, musicFileArray.size());
+    }
+
+    @Test
+    @DisplayName("Tests getMusicFiles on a directory with files, but not audio files")
+    void getMusicFiles_noMusicFiles() throws IOException {
+        String tempMusicPathString = "";
+
+        String[] fileTypes = {".txt", ".xml", ".c", ".pdf", ".word", ".py"};
+        Random rand = new Random();
+
+        for(int i = 0; i <= 10; i++) {
+            tempMusicPathString = "testfile" + i;
+            Files.createTempFile(aTempDir, tempMusicPathString, fileTypes[rand.nextInt(fileTypes.length)]);
+        }
+
+        Files.newDirectoryStream(aTempDir).forEach(x -> System.out.println(x.getFileName()));
+
+        ArrayList<Path> musicFileArray = ConfigManager.getMusicFiles(aTempDir);
+        for(Path tempMusicPath : musicFileArray){
+            assertEquals(0, musicFileArray.size());
+        }
+
     }
 
 
