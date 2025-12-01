@@ -1,9 +1,8 @@
 package main;
 
-import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.ArrayList;
 
 public class ConfigManager {
 
@@ -25,7 +24,7 @@ public class ConfigManager {
 
             // If it doesn't exist:
 
-                    // Get a valid directory from the user
+                    // Get a valid directory from the userr
 
     /**
      * isValidDirectory validates if a string is a directory.
@@ -46,6 +45,30 @@ public class ConfigManager {
     }
 
                     // Scan directory for music files
+    /**
+     * getMusicFiles returns an array of paths representing music files in a directory.
+     * @param userDirectoryPath Valid directory path containing music files.
+     * @return an ArrayList of music file paths.
+     */
+    public static ArrayList<Path> getMusicFiles(Path userDirectoryPath) throws IOException {
+
+
+        ArrayList<Path> userMusic = new ArrayList<>();
+
+        // Create a directory stream and iterate through its entries
+        try (DirectoryStream<Path> userDirectoryEntries = Files.newDirectoryStream(userDirectoryPath)) {
+            for (Path userDirectoryEntry : userDirectoryEntries) {
+                // For each entry in directory determine its file type and place in userMusic array if it's an
+                // audio file.
+                String fileType = Files.probeContentType(userDirectoryEntry);
+                // null in case file type is indeterminate
+                if (fileType != null && fileType.split("/")[0].equals("audio")) {
+                    userMusic.add(userDirectoryEntry);
+                }
+            }
+        }
+        return userMusic;
+    }
 
                     // Create config folder and config file
 
