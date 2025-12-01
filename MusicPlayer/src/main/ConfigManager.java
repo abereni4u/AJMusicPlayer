@@ -52,7 +52,6 @@ public class ConfigManager {
      */
     public static ArrayList<Path> getMusicFiles(Path userDirectoryPath) throws IOException {
 
-
         ArrayList<Path> userMusic = new ArrayList<>();
 
         // Create a directory stream and iterate through its entries

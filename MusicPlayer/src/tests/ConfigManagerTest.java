@@ -49,6 +49,13 @@ class ConfigManagerTest {
         }
     }
 
+    @Test
+    @DisplayName("Tests getMusicFiles on a directory with no files")
+    void getMusicFiles_emptyDirectory() throws IOException {
+
+        ArrayList<Path> musicFileArray = ConfigManager.getMusicFiles(aTempDir);
+        assertEquals(0, musicFileArray.size());
+    }
 
 
 }
