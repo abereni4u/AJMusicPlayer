@@ -72,6 +72,23 @@ public class ConfigManager {
 
                     // Create config folder and config file
 
+    /***
+     * createConfigFolder creates a folder named "config" at the given directory.
+     * Precondition: configDirectory is a valid directory, and a file named "config" does not already exist.
+     * Postcondition: a folder named "config" is created at the given directory.
+     * @param configDirectory the desired directory at which to create a config folder.
+     * @return true if directory creation was successful, false otherwise.
+     */
+    public boolean createConfigFolder(Path configDirectory) {
+        try {
+            Path configPath = configDirectory.resolve("config");
+            Files.createDirectories(configPath);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
                     // Add directory to config file
 
                     // Create MusicLibrary from files
