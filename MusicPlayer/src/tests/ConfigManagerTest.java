@@ -135,7 +135,16 @@ class ConfigManagerTest {
         boolean createdFile = configM.createConfigFile(aTempDir);
         Path configFilePath = aTempDir.resolve("config.txt");
         assertTrue(createdFile);
-        assertTrue(Files.exists(aTempDir));
+        assertTrue(Files.exists(configFilePath));
     }
+
+    @Test
+    @DisplayName("Tests createConfigFile in a directory where 'config.txt' already exists")
+    void createConfigFile_aFileExists() throws IOException{
+        ConfigManager configM = new ConfigManager();
+        boolean createdFile = configM.createConfigFile(aTempDir);
+        assertFalse(configM.createConfigFile(aTempDir));
+    }
+
 
 }

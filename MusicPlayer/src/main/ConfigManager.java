@@ -50,6 +50,7 @@ public class ConfigManager {
      * If no music files are detected, the array will be of length 0.
      * @param userDirectoryPath Valid directory path containing music files.
      * @return an ArrayList of music file paths OR empty if no music files are detected.
+     * @throws IOException if an I/O error occurs.
      */
     public static ArrayList<Path> getMusicFiles(Path userDirectoryPath) throws IOException {
 
@@ -73,7 +74,8 @@ public class ConfigManager {
                     // Create config folder and config file
 
     /***
-     * createConfigFolder creates a folder named "config" at the given directory.
+     * createConfigFolder creates a folder named "config" at the given directory. If folder already exists, this method
+     * will not do anything.
      * Precondition: configDirectory is a valid directory, and a file named "config" does not already exist.
      * Postcondition: a folder named "config" is created at the given directory.
      * @param configDirectory the desired directory at which to create a config folder.
@@ -90,6 +92,13 @@ public class ConfigManager {
     }
 
 
+    /***
+     * createConfigFile creates a 'config.txt' file at the given directory and returns true if creation was successful.
+     * If the config file already exists, createConfigFile will return false.
+     * @param configFolder the desired directory in which to create 'config.txt'
+     * @return true if creation was successful, false if 'config.txt' already exists in the given directory.
+     * @throws IOException if an I/O error occurs.
+     */
     public boolean createConfigFile(Path configFolder) throws IOException {
         try {
             Files.createFile(configFolder.resolve("config.txt"));
