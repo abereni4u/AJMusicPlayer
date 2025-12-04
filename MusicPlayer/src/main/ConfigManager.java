@@ -89,6 +89,16 @@ public class ConfigManager {
         }
     }
 
+
+    public boolean createConfigFile(Path configFolder) throws IOException {
+        try {
+            Files.createFile(configFolder.resolve("config.txt"));
+            return true;
+        }
+        catch(FileAlreadyExistsException e){
+            return false;
+        }
+    }
                     // Add directory to config file
 
                     // Create MusicLibrary from files
