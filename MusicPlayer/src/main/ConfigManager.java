@@ -93,15 +93,16 @@ public class ConfigManager {
 
 
     /***
-     * createConfigFile creates a 'config.txt' file at the given directory and returns true if creation was successful.
+     * createConfigFile creates a config file at the given directory, with the given extension, and returns true if creation was successful.
      * If the config file already exists, createConfigFile will return false.
-     * @param configFolder the desired directory in which to create 'config.txt'
-     * @return true if creation was successful, false if 'config.txt' already exists in the given directory.
+     * @param configFolder the desired directory in which to create the config file
+     * @param extensionType the desired extension to create the config file with
+     * @return true if creation was successful, false if the config file already exists in the given directory.
      * @throws IOException if an I/O error occurs.
      */
-    public boolean createConfigFile(Path configFolder) throws IOException {
+    public boolean createConfigFile(Path configFolder, String extensionType) throws IOException {
         try {
-            Files.createFile(configFolder.resolve("config.txt"));
+            Files.createFile(configFolder.resolve("config." + extensionType));
             return true;
         }
         catch(FileAlreadyExistsException e){
