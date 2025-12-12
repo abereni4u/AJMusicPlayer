@@ -18,6 +18,23 @@ Goal: Create a full fledged music player from mostly scratch using Java.
 <hr />
 <hr />
 
+<div id="Local Media Player Notes-Entries-12/12/2025"><h3 id="12/12/2025" class="header"><a href="#Local Media Player Notes-Entries-12/12/2025">12/12/2025</a></h3></div>
+<p>
+Its been a while since the last entry. Almost done with classes this semester and then I'll have a bit more time to work on this before I go back into the school grind again this spring. Today I'm writing because I ran into an interesting situation today. I was preparing to restrict the user's ability to add directories, by making it such that the only means to do so is through the application. Since I've transitioned to TDD I was thinking about edge cases, and came up with the case where the user removes a directory with songs in multiple playlists. Would I want those songs removed from the playlists as well? Well to do that I'd need to remove the associated songs from the main music library, and then I'd need to remove all the songs from each playlist that contained them. I could have each music item object keep track of what playlists they're in, and then after identifying all the music objects to be removed from the library, call a 'removeFromAllPlaylists' method for each song. However, this solution wouldn't scale to extremely large libraries with 100+ playlists. At this point I decided to look at MusicBee and Spotify to see how they manage playlists. 
+</p>
+
+<p>
+After testing, I determined that if a song is removed from the music library, in MusicBee, the playlist associated with the song still contains the song, and plays it with no issues. Both Spotify and MusicBee treat the playlists as separate and independent from the complete music library. That makes file relinking in the case of moves way easier. The only thing that matters are the paths. The playlists keeps the paths and when a song is played, test if the song still exists at the path specified: it doesn't? Send an error and flag the song as offline until the user relinks. It does? Then play. 
+</p>
+
+<p>
+Regarding the song's displayed name in the music player, keeping an internal name would be a lot more work than just reading and writing from the song's metadata only, as MusicBee seems to do. 
+</p>
+
+<p>
+Once again I have a clearer idea of where I need to go, and I'm also taking a different approach to the rest of the project. I'm going to study different music players to guide the design of this one. I think trying to go about it from complete scratch isn't a terrible idea but research is so useful and saves a lot of time. As I build my domain knowledge I guess it's called, I'll be able to make better decisions on what I want to keep/implement, what tradeoffs I want to make with different features, etc. For now, it's time to research! 
+</p>
+
 <div id="Local Media Player Notes-Entries-11/30/2025"><h3 id="11/30/2025" class="header"><a href="#Local Media Player Notes-Entries-11/30/2025">11/30/2025</a></h3></div>
 <p>
 Thought more about what I want to leave with after completing this project and thought learning how to use JUnit and trying out TDD would be a good idea. I'm refactoring the project again, and once again, with a better idea of what needs to happen. Right now I'm going through and adding tests for all the methods I've got so far while also removing any I think I don't need or could be placed somewhere else. I've gotten a better handle on how the stream API works and got that working to check if any songs in a user's library have been unlinked, deleted, etc. Changed the structure of this wiki too. Will probably just use it mainly for entries, goals, and my design map. Everything else I've just been writing out on paper and keeping notes with me but it changes so often I don't want to keep updating it here. 
