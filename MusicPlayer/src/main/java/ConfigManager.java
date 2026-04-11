@@ -1,3 +1,8 @@
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
+
 import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
 import java.nio.file.*;
@@ -109,7 +114,7 @@ public class ConfigManager {
         }
     }
                     // Create MusicLibrary from files
-    public MusicLibrary createMusicLibrary(ArrayList<Path> musicPaths){
+    public MusicLibrary createMusicLibrary(ArrayList<Path> musicPaths) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
         MusicLibrary newMusicLibrary = new MusicLibrary();
         newMusicLibrary.loadMusicLibrary(musicPaths);
         return newMusicLibrary;

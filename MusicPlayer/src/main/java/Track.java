@@ -18,32 +18,36 @@ import java.nio.file.Paths;
  * fields
  */
 public class Track implements Serializable {
-    private transient Path filePath;
     private final String title;
-
     private final String artist;
-
     private final String album;
-
     private final int trackLength;
-
-    private String pathString = "";
+    private String location;
 
     public static Track createTrack(String pathString) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
 
         Path trackFilePath = Paths.get(pathString);
 
-
         AudioFile f = AudioFileIO.read(trackFilePath.toFile());
         Tag tag = f.getTag();
-        AudioHeader permTags = f.getAudioHeader(); // Tags that can't be changed here
 
+        // ---------- UNCHANGEABLE TAGS HERE ---------- //
+
+        AudioHeader permTags = f.getAudioHeader(); // Tags that can't be changed here
         int tagTrackLength = permTags.getTrackLength();
+
+        // ---------- SET TAGS HERE ---------- //
+
         String tagTitle = tag.getFirst(FieldKey.TITLE);
         String tagArtist = tag.getFirst(FieldKey.ARTIST);
         String tagAlbum = tag.getFirst(FieldKey.ALBUM);
 
-        return new Track(tagTrackLength, tagTitle, tagArtist, tagAlbum);
+        // -----------------------------------//
+
+        Track newTrack = new Track(tagTrackLength, tagTitle, tagArtist, tagAlbum);
+
+        newTrack.location = pathString;
+        return newTrack;
     }
 
     private Track(int trackLength, String title, String artist, String album){
@@ -53,20 +57,13 @@ public class Track implements Serializable {
         this.album = album;
     }
 
-    public Path getFilePath(){
-        return filePath;
-    }
-
     public String getTitle(){
         return this.title;
     }
-
-    public String getPathString(){ return this.pathString;}
-
-    public void setFilePath(){
-        this.filePath = Paths.get(pathString);
-    }
-
+    public String getLocation(){ return this.location;}
+    public String getArtist(){ return this.artist;}
+    public String getAlbum(){ return this.album;}
+    
     @Override
     public boolean equals(Object obj) {
         if(this == obj){
@@ -76,10 +73,11 @@ public class Track implements Serializable {
         if(!(obj instanceof Track other)){
             return false;
         }
-        if(this.filePath == null){
-            return this.pathString.equals(other.pathString);
+
+        if(this.location.equals("")){
+            return false;
         }
 
-        return this.filePath.equals(other.filePath);
+        return this.location.equals(other.location);
     }
 }

@@ -1,3 +1,9 @@
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,10 +26,10 @@ public class MusicLibrary implements Serializable {
       this.currentLibrary = library;
    }
 
-   public void loadMusicLibrary(ArrayList<Path> trackPaths) {
+   public void loadMusicLibrary(ArrayList<Path> trackPaths) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
       for (Path trackPath : trackPaths) {
          String pathString = trackPath.toString();
-         Track newTrack = new Track(pathString);
+         Track newTrack = Track.createTrack(pathString);
          this.currentLibrary.put(pathString, newTrack);
       }
    }
