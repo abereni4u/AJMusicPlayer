@@ -1,5 +1,3 @@
-package tests;
-
 import main.ConfigManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

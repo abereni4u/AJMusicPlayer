@@ -1,28 +1,35 @@
-package main;
-
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 
 /***
  * Represents the user's entire music library. Contains a dictionary with song paths as keys and Track items as values.
  */
-public class MusicLibrary implements Serializable{
+public class MusicLibrary implements Serializable {
 
-   private Map<String,Track> currentLibrary;
+   private Map<String, Track> currentLibrary;
 
-   public MusicLibrary(){
+   public MusicLibrary() {
       this.currentLibrary = new HashMap<>();
    }
 
-   public MusicLibrary(Map<String, Track> library){
+   public MusicLibrary(Map<String, Track> library) {
       this.currentLibrary = library;
    }
 
+   public void loadMusicLibrary(ArrayList<Path> trackPaths) {
+      for (Path trackPath : trackPaths) {
+         String pathString = trackPath.toString();
+         Track newTrack = new Track(pathString);
+         this.currentLibrary.put(pathString, newTrack);
+      }
+   }
+
+
+}
 
 //   private ArrayList<Track> currentLibrary;
 //   private ArrayList<Track> unlinkedItems;
@@ -90,4 +97,3 @@ public class MusicLibrary implements Serializable{
 //      return this.unlinkedItems;
 //   }
 
-}

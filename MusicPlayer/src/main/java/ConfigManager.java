@@ -1,5 +1,3 @@
-package main;
-
 import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
 import java.nio.file.*;
@@ -111,8 +109,10 @@ public class ConfigManager {
         }
     }
                     // Create MusicLibrary from files
-    public boolean createMusicLibrary(ArrayList<Path> musicPaths){
-
+    public MusicLibrary createMusicLibrary(ArrayList<Path> musicPaths){
+        MusicLibrary newMusicLibrary = new MusicLibrary();
+        newMusicLibrary.loadMusicLibrary(musicPaths);
+        return newMusicLibrary;
     }
                     // Serialize MusicLibrary
 
