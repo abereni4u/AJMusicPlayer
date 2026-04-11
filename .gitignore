@@ -1,1 +1,5 @@
 testMusicFolder/
+.github/
+testConfigFolder/
+MusicPlayer/.idea
+MusicPlayer/MusicPlayer.iml

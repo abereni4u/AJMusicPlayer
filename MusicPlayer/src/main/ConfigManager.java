@@ -1,5 +1,6 @@
 package main;
 
+import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -109,11 +110,13 @@ public class ConfigManager {
             return false;
         }
     }
-                    // Add directory to config file
-
                     // Create MusicLibrary from files
+    public boolean createMusicLibrary(ArrayList<Path> musicPaths){
 
+    }
                     // Serialize MusicLibrary
+
+                    // Add directory to config file
 
                     // Return updated MusicLibrary
 
