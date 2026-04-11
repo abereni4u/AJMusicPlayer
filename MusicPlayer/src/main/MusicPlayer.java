@@ -43,7 +43,7 @@ public class MusicPlayer {
                 ArrayList<Path> userMusic = getMusicFiles(userDirectoryPath);
                 // Create a MusicItem from each audio file in directory and add MusicItem to MusicLibrary
                 for (Path uPath : userMusic) {
-                    MusicItem currentSong = new MusicItem(uPath.toString());
+                    Track currentSong = new Track(uPath.toString());
                     USER_LIBRARY.addMusic(currentSong);
                     System.out.println(currentSong.getTitle());
                 }
@@ -74,7 +74,7 @@ public class MusicPlayer {
      */
     public static void updateLibrary() throws IOException {
 
-        ArrayList<MusicItem> newSongs = new ArrayList<>();
+        ArrayList<Track> newSongs = new ArrayList<>();
 
         parseConfigFile();
         for(String directory: userDirectories){
@@ -83,7 +83,7 @@ public class MusicPlayer {
             Path configDirectoryEntry = Paths.get(directory);
             ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
             for(Path musicPath: files){
-                MusicItem newMusicItem = new MusicItem(musicPath.toString());
+                Track newMusicItem = new Track(musicPath.toString());
                 boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
                 if(!(insideLibrary)){
                     newSongs.add(newMusicItem);
@@ -147,10 +147,10 @@ public class MusicPlayer {
         USER_LIBRARY.deserializeMusicObjects();
 
         // Print any unlinked items.
-        ArrayList<MusicItem> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
+        ArrayList<Track> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
         if(unlinkedItems.size() > 0) {
             System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
-            for (MusicItem MI : unlinkedItems) {
+            for (Track MI : unlinkedItems) {
                 System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
             }
         }

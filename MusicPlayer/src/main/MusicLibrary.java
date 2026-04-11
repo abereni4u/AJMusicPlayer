@@ -1,7 +1,6 @@
 package main;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,8 +10,8 @@ import java.util.ArrayList;
  * Represents the user's entire music library. Holds an array of all songs, represented as MusicItems, in a user's library.
  */
 public class MusicLibrary implements Serializable{
-   private ArrayList<MusicItem> currentLibrary;
-   private ArrayList<MusicItem> unlinkedItems;
+   private ArrayList<Track> currentLibrary;
+   private ArrayList<Track> unlinkedItems;
 
    private ArrayList<String> LibraryDirectories;
 
@@ -23,10 +22,10 @@ public class MusicLibrary implements Serializable{
    }
 
    public void deserializeMusicObjects(){
-      ArrayList<MusicItem> itemsToRemove = new ArrayList<>();
+      ArrayList<Track> itemsToRemove = new ArrayList<>();
       unlinkedItems.clear();
 
-      for(MusicItem MI: currentLibrary){
+      for(Track MI: currentLibrary){
          Path MIPath = Paths.get(MI.getPathString());
 
          boolean inDirectories = false;
@@ -57,11 +56,11 @@ public class MusicLibrary implements Serializable{
       this.LibraryDirectories.add(userDirectory);
    }
 
-   public void addMusic(MusicItem Music){
+   public void addMusic(Track Music){
       this.currentLibrary.add(Music);
    }
 
-   public ArrayList<MusicItem> getCurrentLibrary(){
+   public ArrayList<Track> getCurrentLibrary(){
       return this.currentLibrary;
    }
 
@@ -69,11 +68,11 @@ public class MusicLibrary implements Serializable{
       return this.LibraryDirectories;
    }
 
-   public boolean containsSong(MusicItem Music){
+   public boolean containsSong(Track Music){
       return currentLibrary.contains(Music);
    }
 
-   public ArrayList<MusicItem> getUnlinkedItems(){
+   public ArrayList<Track> getUnlinkedItems(){
       return this.unlinkedItems;
    }
 
