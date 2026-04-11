@@ -10,6 +10,7 @@ import org.jaudiotagger.tag.TagException;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -18,11 +19,15 @@ import java.nio.file.Paths;
  * fields
  */
 public class Track implements Serializable {
+    private String location;
     private final String title;
     private final String artist;
     private final String album;
     private final int trackLength;
-    private String location;
+    private final String genre;
+    private final String year;
+
+
 
     public static Track createTrack(String pathString) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
 
@@ -33,28 +38,74 @@ public class Track implements Serializable {
 
         // ---------- UNCHANGEABLE TAGS HERE ---------- //
 
-        AudioHeader permTags = f.getAudioHeader(); // Tags that can't be changed here
+        AudioHeader permTags = f.getAudioHeader();
         int tagTrackLength = permTags.getTrackLength();
 
         // ---------- SET TAGS HERE ---------- //
 
-        String tagTitle = tag.getFirst(FieldKey.TITLE);
-        String tagArtist = tag.getFirst(FieldKey.ARTIST);
-        String tagAlbum = tag.getFirst(FieldKey.ALBUM);
+        Track newTrack = new Track.Builder()
+                .location(pathString)
+                .trackLength(tagTrackLength)
+                .title(tag.getFirst(FieldKey.TITLE))
+                .artist(tag.getFirst(FieldKey.ARTIST))
+                .album(tag.getFirst(FieldKey.ALBUM))
+                .genre(tag.getFirst(FieldKey.GENRE))
+                .year(tag.getFirst(FieldKey.YEAR))
+                .build();
 
-        // -----------------------------------//
-
-        Track newTrack = new Track(tagTrackLength, tagTitle, tagArtist, tagAlbum);
-
-        newTrack.location = pathString;
         return newTrack;
     }
 
-    private Track(int trackLength, String title, String artist, String album){
-        this.trackLength = trackLength;
-        this.title = title;
-        this.artist = artist;
-        this.album = album;
+    private Track(Builder builder){
+        this.location   = builder.location;
+        this.title      = builder.title;
+        this.artist     = builder.artist;
+        this.album      = builder.album;
+        this.trackLength = builder.trackLength;
+        this.genre      = builder.genre;
+        this.year       = builder.year;
+    }
+
+    public static class Builder{
+        private String location;
+        private String title;
+        private String artist;
+        private String album;
+        private int trackLength;
+        private String genre;
+        private String year;
+
+        public Builder location(String location){
+            this.location = location;
+            return this;
+        }
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+        public Builder artist(String artist) {
+            this.artist = artist;
+            return this;
+        }
+        public Builder album(String album) {
+            this.album = album;
+            return this;
+        }
+        public Builder trackLength(int trackLength) {
+            this.trackLength = trackLength;
+            return this;
+        }
+        public Builder genre(String genre) {
+            this.genre = genre;
+            return this;
+        }
+        public Builder year(String year) {
+            this.year = year;
+            return this;
+        }
+        public Track build() {
+            return new Track(this);
+        }
     }
 
     public String getTitle(){
@@ -63,7 +114,7 @@ public class Track implements Serializable {
     public String getLocation(){ return this.location;}
     public String getArtist(){ return this.artist;}
     public String getAlbum(){ return this.album;}
-    
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj){
