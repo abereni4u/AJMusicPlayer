@@ -27,6 +27,16 @@ public class Track implements Serializable {
     private final String genre;
     private final String year;
 
+    // ------------- GETTERS | SETTERS -------------- //
+    public String getTitle(){
+        return this.title;
+    }
+    public String getLocation(){ return this.location;}
+    public String getArtist(){ return this.artist;}
+    public String getAlbum(){ return this.album;}
+    public String getGenre(){ return this.genre;}
+    public String getYear(){ return this.year;}
+    // ------------- GETTERS | SETTERS -------------- //
 
 
     public static Track createTrack(String pathString) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
@@ -55,7 +65,6 @@ public class Track implements Serializable {
 
         return newTrack;
     }
-
     private Track(Builder builder){
         this.location   = builder.location;
         this.title      = builder.title;
@@ -65,7 +74,6 @@ public class Track implements Serializable {
         this.genre      = builder.genre;
         this.year       = builder.year;
     }
-
     public static class Builder{
         private String location;
         private String title;
@@ -108,12 +116,6 @@ public class Track implements Serializable {
         }
     }
 
-    public String getTitle(){
-        return this.title;
-    }
-    public String getLocation(){ return this.location;}
-    public String getArtist(){ return this.artist;}
-    public String getAlbum(){ return this.album;}
 
     @Override
     public boolean equals(Object obj) {

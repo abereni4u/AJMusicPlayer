@@ -4,6 +4,7 @@ import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.TagException;
 
 import javax.swing.plaf.basic.BasicDesktopIconUI;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ public class ConfigManager {
             // If it doesn't exist:
 
                     // Get a valid directory from the userr
+
+    static final String CONFIG_FOLDER = "../testConfigFolder";
+    static final Path CONFIG_FOLDER_PATH = Paths.get(CONFIG_FOLDER);
+    static final Path CONFIG_FILE_PATH = Paths.get(CONFIG_FOLDER, "configFile.txt");
 
     /**
      * isValidDirectory validates if a string is a directory.
@@ -120,6 +125,8 @@ public class ConfigManager {
         return newMusicLibrary;
     }
                     // Serialize MusicLibrary
+    public static void serializeMusicLibrary() throws IOException{
+    }
 
                     // Add directory to config file
 
