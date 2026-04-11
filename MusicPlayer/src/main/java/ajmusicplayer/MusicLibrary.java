@@ -1,3 +1,5 @@
+package ajmusicplayer;
+
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
@@ -5,14 +7,12 @@ import org.jaudiotagger.tag.TagException;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 
 /***
- * Represents the user's entire music library. Contains a dictionary with song paths as keys and Track items as values.
+ * Represents the user's entire music library. Contains a dictionary with song paths as keys and ajmusicplayer.Track items as values.
  */
 public class MusicLibrary implements Serializable {
 
@@ -37,22 +37,22 @@ public class MusicLibrary implements Serializable {
 
 }
 
-//   private ArrayList<Track> currentLibrary;
-//   private ArrayList<Track> unlinkedItems;
+//   private ArrayList<ajmusicplayer.Track> currentLibrary;
+//   private ArrayList<ajmusicplayer.Track> unlinkedItems;
 //
 //   private ArrayList<String> LibraryDirectories;
 //
-//   public MusicLibrary(){
+//   public ajmusicplayer.MusicLibrary(){
 //      this.currentLibrary = new ArrayList<>();
 //      this.unlinkedItems = new ArrayList<>();
 //      this.LibraryDirectories= new ArrayList<>();
 //
 //
 //   public void deserializeMusicObjects(){
-//      ArrayList<Track> itemsToRemove = new ArrayList<>();
+//      ArrayList<ajmusicplayer.Track> itemsToRemove = new ArrayList<>();
 //      unlinkedItems.clear();
 //
-//      for(Track MI: currentLibrary){
+//      for(ajmusicplayer.Track MI: currentLibrary){
 //         Path MIPath = Paths.get(MI.getPathString());
 //
 //         boolean inDirectories = false;
@@ -83,11 +83,11 @@ public class MusicLibrary implements Serializable {
 //      this.LibraryDirectories.add(userDirectory);
 //   }
 //
-//   public void addMusic(Track Music){
+//   public void addMusic(ajmusicplayer.Track Music){
 //      this.currentLibrary.add(Music);
 //   }
 //
-//   public ArrayList<Track> getCurrentLibrary(){
+//   public ArrayList<ajmusicplayer.Track> getCurrentLibrary(){
 //      return this.currentLibrary;
 //   }
 //
@@ -95,11 +95,11 @@ public class MusicLibrary implements Serializable {
 //      return this.LibraryDirectories;
 //   }
 //
-//   public boolean containsSong(Track Music){
+//   public boolean containsSong(ajmusicplayer.Track Music){
 //      return currentLibrary.contains(Music);
 //   }
 //
-//   public ArrayList<Track> getUnlinkedItems(){
+//   public ArrayList<ajmusicplayer.Track> getUnlinkedItems(){
 //      return this.unlinkedItems;
 //   }
 

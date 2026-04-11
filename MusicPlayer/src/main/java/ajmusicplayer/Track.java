@@ -1,3 +1,5 @@
+package ajmusicplayer;
+
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
@@ -10,7 +12,6 @@ import org.jaudiotagger.tag.TagException;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

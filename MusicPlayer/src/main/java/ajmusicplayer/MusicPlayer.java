@@ -1,9 +1,10 @@
+package ajmusicplayer;
+
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.*;
+
 
 public class MusicPlayer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -23,13 +24,13 @@ public class MusicPlayer {
 //    }
 
 //    /**
-//     * Updates MusicLibrary with new additions from directories. If new directories are found, they get added to
-//     * the MusicLibrary.
+//     * Updates ajmusicplayer.MusicLibrary with new additions from directories. If new directories are found, they get added to
+//     * the ajmusicplayer.MusicLibrary.
 //     * @throws IOException
 //     */
 //    public static void updateLibrary() throws IOException {
 //
-//        ArrayList<Track> newSongs = new ArrayList<>();
+//        ArrayList<ajmusicplayer.Track> newSongs = new ArrayList<>();
 //
 //        parseConfigFile();
 //        for(String directory: userDirectories){
@@ -38,7 +39,7 @@ public class MusicPlayer {
 //            Path configDirectoryEntry = Paths.get(directory);
 //            ArrayList<Path> files = getMusicFiles(configDirectoryEntry);
 //            for(Path musicPath: files){
-//                Track newMusicItem = new Track(musicPath.toString());
+//                ajmusicplayer.Track newMusicItem = new ajmusicplayer.Track(musicPath.toString());
 //                boolean insideLibrary = USER_LIBRARY.containsSong(newMusicItem);
 //                if(!(insideLibrary)){
 //                    newSongs.add(newMusicItem);
@@ -57,7 +58,7 @@ public class MusicPlayer {
 
 
 //    /**
-//     * Serializes MusicLibrary object to config folder
+//     * Serializes ajmusicplayer.MusicLibrary object to config folder
 //     * @throws IOException
 //     */
 //    public static void serializeLibrary() throws IOException {
@@ -86,14 +87,14 @@ public class MusicPlayer {
 //
 //
 //    /**
-//     * Deserializes MusicLibrary object from config folder. Prints all songs that have changed locations in directory.
+//     * Deserializes ajmusicplayer.MusicLibrary object from config folder. Prints all songs that have changed locations in directory.
 //     * @throws IOException
 //     * @throws ClassNotFoundException
 //     */
 //    public static void deserializeLibrary() throws IOException, ClassNotFoundException {
 //        FileInputStream inStream = new FileInputStream(USER_LIBRARY_PATH);
 //        ObjectInputStream inputFile = new ObjectInputStream(inStream) ;
-//        USER_LIBRARY = (MusicLibrary) inputFile.readObject();
+//        USER_LIBRARY = (ajmusicplayer.MusicLibrary) inputFile.readObject();
 //        // Set path fields in each MusicItem again and remove songs from library that are not in a path
 //        // contained in the config file.
 //
@@ -102,10 +103,10 @@ public class MusicPlayer {
 //        USER_LIBRARY.deserializeMusicObjects();
 //
 //        // Print any unlinked items.
-//        ArrayList<Track> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
+//        ArrayList<ajmusicplayer.Track> unlinkedItems = USER_LIBRARY.getUnlinkedItems();
 //        if(unlinkedItems.size() > 0) {
 //            System.out.println(unlinkedItems.size() + " songs have changed location. Please resolve: ");
-//            for (Track MI : unlinkedItems) {
+//            for (ajmusicplayer.Track MI : unlinkedItems) {
 //                System.out.println(MI.getTitle() + " | " + MI.getPathString() + "\n");
 //            }
 //        }

@@ -1,17 +1,17 @@
+package ajmusicplayer;
+
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.TagException;
 
-import javax.swing.plaf.basic.BasicDesktopIconUI;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 
 public class ConfigManager {
 
-    // Return a MusicLibrary object
+    // Return a ajmusicplayer.MusicLibrary object
 
         // Check if config folder exists
 
@@ -19,13 +19,13 @@ public class ConfigManager {
 
                     // Read directories from config file
 
-                    // Deserialize MusicLibrary
-                        // Update MusicLibrary
+                    // Deserialize ajmusicplayer.MusicLibrary
+                        // Update ajmusicplayer.MusicLibrary
                             // Check for unlinks and deletions
 
-                    // Serialize MusicLibrary
+                    // Serialize ajmusicplayer.MusicLibrary
 
-                    // Return updated MusicLibrary object
+                    // Return updated ajmusicplayer.MusicLibrary object
 
             // If it doesn't exist:
 
@@ -118,18 +118,18 @@ public class ConfigManager {
             return false;
         }
     }
-                    // Create MusicLibrary from files
+                    // Create ajmusicplayer.MusicLibrary from files
     public MusicLibrary createMusicLibrary(ArrayList<Path> musicPaths) throws CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException, IOException {
         MusicLibrary newMusicLibrary = new MusicLibrary();
         newMusicLibrary.loadMusicLibrary(musicPaths);
         return newMusicLibrary;
     }
-                    // Serialize MusicLibrary
+                    // Serialize ajmusicplayer.MusicLibrary
     public static void serializeMusicLibrary() throws IOException{
     }
 
                     // Add directory to config file
 
-                    // Return updated MusicLibrary
+                    // Return updated ajmusicplayer.MusicLibrary
 
 }
