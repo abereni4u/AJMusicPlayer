@@ -3,9 +3,11 @@ package ajmusicplayer;
 import java.io.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.Parent.*;
 import java.nio.file.*;
 import java.nio.file.Files;
 import java.util.*;
@@ -20,7 +22,14 @@ public class MusicPlayer extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("AJ Music Player");
+        VBox root = new VBox();
 
+        Text msg = new Text("Music goes here...eventually.");
+        root.getChildren().add(msg);
+
+        Scene scene = new Scene(root, 1920, 1080);
+
+        stage.setScene(scene);
         stage.show();
     }
 
