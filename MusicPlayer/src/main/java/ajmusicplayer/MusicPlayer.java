@@ -1,14 +1,27 @@
 package ajmusicplayer;
 
 import java.io.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import java.nio.file.*;
 import java.nio.file.Files;
 import java.util.*;
 
 
-public class MusicPlayer {
+public class MusicPlayer extends Application {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        launch(args);
+    }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        stage.setTitle("AJ Music Player");
+
+        stage.show();
     }
 
 //    public static void endReport(){
