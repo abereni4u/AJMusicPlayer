@@ -8,7 +8,7 @@ A desktop music player for local audio files built in Java using JavaFX. Inspire
 - Maven
 
 ## Status
-In active development. Library and metadata layers are still taking shape. UI and playback functionality are next. 
+In active development. Library and metadata layers are still being worked on. UI and playback functionality are next. 
 
 For ongoing notes, design decisions, and dev-log entries, see the [project wiki](https://abereni4u.github.io/AJMusicPlayer/MusicPlayerWiki.html).
 
