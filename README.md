@@ -1,5 +1,16 @@
 # AJ Music Player
-A music player developed using Java.
+A desktop music player for local audio files built in Java using JavaFX. Inspired by MusicBee music player. 
 
-## Progression Log
-Dev log and other notes [here](https://abereni4u.github.io/AJMusicPlayer/MusicPlayerWiki.html). 
+## Tech stack
+- Java
+- JavaFX (UI)
+- jaudiotagger (audio metadata extraction)
+- Maven
+
+## Status
+In active development. Library and metadata layers are still taking shape. UI and playback functionality are next. 
+
+For ongoing notes, design decisions, and dev-log entries, see the [project wiki](https://abereni4u.github.io/AJMusicPlayer/MusicPlayerWiki.html).
+
+### LAST DEV LOG ENTRY: 12/2025
+
